@@ -1,0 +1,3 @@
+Negro grisoso logo = #3A3435
+Verde oscuro logo = #007734
+Verde claro logo = #76B600

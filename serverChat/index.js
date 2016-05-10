@@ -30,7 +30,10 @@ app.use('/bower_components', express.static(__dirname+'/bower_components') );
 
 //obtener mensajes guardados en la BD
 app.get('/messages', function(req, res){
-	var query = 'SELECT Usuario, Mensaje FROM Chat';
+	var query = "SELECT cp.Id, cp.Mensaje\
+				FROM chatpsicologia cp\
+				WHERE cp.Remitente = '$receptor' AND cp.Estado = FALSE\
+				ORDER BY cp.Fecha";
 
 	connection.query(query, function(err, message){
 		if( err)
@@ -54,7 +57,7 @@ io.on('connection', function(socket){
 	socket.on('new message', function(message){
 		console.log(message.Usuario+" ha enviado un mensaje");
 		//guardar mensaje en la BD
-		var query = 'INSERT INTO Chat SET ?';
+		var query = 'chatpsicologia(Mensaje, Remitente, Destinatario) SET ?';
 
 		connection.query( query, message, function(err, result){
 			if( err )
