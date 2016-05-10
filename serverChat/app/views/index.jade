@@ -1,0 +1,75 @@
+doctype html
+html(lang="es")
+	
+	head
+		meta(charset="utf-8")
+		title Simple Chat Nodejs
+		link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+
+	body
+		div.container
+			div.row
+				h1 Chat con NodeJs
+
+				div.col-xs-4
+					h2 Nuevo mensaje
+					form(action="")
+						
+						div.form-group
+							label(for="username") UserName:
+							input#username.form-control(type="text")
+						
+						div.form-group
+							label(for="message") Mesagge:
+							textarea#message.form-control
+						
+						div.form-group
+							button#send-message.btn.btn-primary(type="button") Send message
+
+				div.col-xs-8
+					h2 Mensajes
+					ul(id="messages")
+
+		script(src="/bower_components/jquery/dist/jquery.js")
+		script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+		script(src="/socket.io/socket.io.js")
+
+		//script de la aplicacion
+		script.
+			var socket = io();
+
+			$(document).ready(function(){
+
+				$.get('/messages', function(messages){
+
+					$.each(messages, function(index, value){
+						var newMessage = $('<li>').append(value.Usuario+" : "+ value.Mensaje );
+						$('#messages').append(newMessage);
+					});
+					
+				});
+
+			});
+
+			$('#send-message').on('click', function(){
+					
+				var message = {
+					Usuario : $('#username').val(),
+					Mensaje  	 : $('#message').val()
+				};
+
+				//enviar mensaje 
+				socket.emit('new message', message);
+
+				$('#message').val('');
+			});
+
+			socket.on('new message', function(message){
+				var newMessage = $('<li>').append(message.Usuario+" : "+ message.Mensaje );
+				$('#messages').append(newMessage);
+			});
+
+
+
+
+	
