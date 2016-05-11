@@ -29,7 +29,7 @@
 
 		$sql = "SELECT cp.Id, cp.Mensaje
 				FROM chatpsicologia cp
-				WHERE cp.Remitente = '$receptor' AND cp.Estado = FALSE
+				WHERE cp.Remitente = '$receptor' AND cp.Destinatario ='$remitente' AND cp.Estado = FALSE
 				ORDER BY cp.Fecha";//busco mensajes enviados sin leer
 
 		

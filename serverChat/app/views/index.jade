@@ -17,12 +17,19 @@ html(lang="es")
 						
 						div.form-group
 							label(for="username") UserName:
-							input#username.form-control(type="text")
+							input#username.form-control(type="text", value="1104379")
+
+						div.form-group
+							label(for="destinatario") Destinatario
+							input#destinatario.form-control(type="text",value="7")
 						
 						div.form-group
 							label(for="message") Mesagge:
 							textarea#message.form-control
 						
+						div.form-group
+							button#getOld.btn.btn-primary(type="button") Get mensajes
+
 						div.form-group
 							button#send-message.btn.btn-primary(type="button") Send message
 
@@ -39,37 +46,43 @@ html(lang="es")
 			var socket = io();
 
 			$(document).ready(function(){
-
-				$.get('/messages', function(messages){
-
-					$.each(messages, function(index, value){
-						var newMessage = $('<li>').append(value.Usuario+" : "+ value.Mensaje );
-						$('#messages').append(newMessage);
-					});
-					
-				});
-
+			
 			});
 
 			$('#send-message').on('click', function(){
 					
 				var message = {
-					Usuario : $('#username').val(),
-					Mensaje  	 : $('#message').val()
+					Mensaje 	 : $('#message').val(),
+					Remitente 	 : $('#username').val(),
+					Destinatario : $('#destinatario').val()
 				};
 
 				//enviar mensaje 
-				socket.emit('new message', message);
+				socket.emit('new message', message);	
 
 				$('#message').val('');
 			});
 
-			socket.on('new message', function(message){
-				var newMessage = $('<li>').append(message.Usuario+" : "+ message.Mensaje );
-				$('#messages').append(newMessage);
+			$('#getOld').on('click', function(){
+				
+				$.post('/messages',{
+									remitente:$('#username').val(), 
+									destinatario:$('#destinatario').val()
+									}, 
+					function(messages){
+					console.log( messages );
+					$.each(messages, function(index, value){
+						var newMessage = $('<li>').append(value.Remitente+" : "+value.Mensaje);
+						$('#messages').append(newMessage);
+					});
+					
+				},"json");
 			});
 
-
+			socket.on('new message', function(message){
+				var newMessage = $('<li>').append(message.Remitente+" : "+ message.Mensaje );
+				$('#messages').append(newMessage);
+			});
 
 
 	

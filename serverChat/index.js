@@ -1,7 +1,8 @@
 var express = require('express'),
 	http	= require('http'),
 	socket 	= require('socket.io'),
-	mysql	= require('mysql');
+	mysql	= require('mysql'),
+	bodyParser = require('body-parser');
 
 
 //configurar conexion a la BD
@@ -9,7 +10,7 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: '',
-	database: 'node'
+	database: 'bienestarcun'
 })
 
 //crear aplicacion
@@ -18,7 +19,9 @@ var server	= http.createServer(app);
 var io 		= socket(server);
 
 
-
+//obtener parametros por enviados por post en json 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //configurar motor de plantillas
 app.set('views', __dirname+'/app/views');
@@ -29,10 +32,15 @@ app.locals.pretty = true;
 app.use('/bower_components', express.static(__dirname+'/bower_components') );
 
 //obtener mensajes guardados en la BD
-app.get('/messages', function(req, res){
-	var query = "SELECT cp.Id, cp.Mensaje\
+app.post('/messages', function(req, res){
+	
+	var query = "SELECT cp.Id, cp.Remitente, cp.Mensaje\
 				FROM chatpsicologia cp\
-				WHERE cp.Remitente = '$receptor' AND cp.Estado = FALSE\
+				WHERE ( (cp.Remitente = "+req.body.destinatario+"\
+					  AND cp.Destinatario = "+req.body.remitente+")\
+					  OR (cp.Remitente = "+req.body.remitente+"\
+					  AND cp.Destinatario = "+req.body.destinatario+"))\
+					  AND cp.Estado = FALSE\
 				ORDER BY cp.Fecha";
 
 	connection.query(query, function(err, message){
@@ -55,9 +63,10 @@ io.on('connection', function(socket){
 
 	//Al enviarse un mensaje desde el cliente
 	socket.on('new message', function(message){
-		console.log(message.Usuario+" ha enviado un mensaje");
+		console.log(message.Remitente+" ha enviado un mensaje");
 		//guardar mensaje en la BD
-		var query = 'chatpsicologia(Mensaje, Remitente, Destinatario) SET ?';
+
+		var query = 'INSERT INTO chatpsicologia SET ?';
 
 		connection.query( query, message, function(err, result){
 			if( err )
