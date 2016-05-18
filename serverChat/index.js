@@ -87,7 +87,7 @@ app.get('/', function(req, res){
 
 //configurar socket.io para escuchar eventos desde el cliente
 io.on('connection', function(socket){
-	console.log('Usuario conectado: ');
+	console.log('Usuario conectado');
 		
 	socket.on('new message', function(message){//Al enviarse un mensaje desde el cliente
 		if( (message.Mensaje && message.Remitente && message.Destinatario )
@@ -132,13 +132,15 @@ io.on('connection', function(socket){
 							'remitente':data.remitente,
 							'receptor':data.receptor});
 
+			
+			io.to(socket.id).emit('saveIdSocket', {'status':true});
 		}
 		
 	});
 
 	socket.on('disconnect', function(){
 		DeleteSocketConversasion(socket.id);//remuevo el usuario de el objeto con los id de los socket
-		console.log('Usuario desconectado..');
+		console.log('Usuario desconectado.. ');
 
 	});
 });

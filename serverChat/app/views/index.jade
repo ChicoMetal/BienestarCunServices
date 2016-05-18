@@ -114,5 +114,9 @@ html(lang="es")
 				alert(err.msm);
 			});
 
+			socket.on('saveIdSocket', function(res){	
+				console.log('El estado es '+res.status);
+			});
+
 
 	
