@@ -39,10 +39,12 @@
 				SaveLogFails(false, $user, $pass );//guardo el intento fallido de login
 
 				echo $GLOBALS['resUA2']; //retorno usuario inexistente
+				exit(0);
 
 			}else{
 
 				echo  $result;
+				exit(0);
 
 			}
 
@@ -53,6 +55,7 @@
 			array_push( $result, $token ); //agrego el token al array
 
 			echo json_encode( $result );
+			exit(0);
 
 		}else{
 
@@ -61,11 +64,13 @@
 			SaveLogFails(true, $user, $pass, $result[0][0]->$result[1][0] );//guardo el intento fallido de login con la foranea
 
 			echo $GLOBALS['resUA4'];
+			exit(0);
 		}
 
 	}else{
 
 		echo $GLOBALS['resB2'];
+		exit(0);
 
 	}
 

@@ -29,7 +29,7 @@
 			SaveDepuration( $contenido );
 
 			echo $GLOBALS['resZ'];
-			exit();
+			exit(0);
 			//print_r($error['message']);//Capturo el Error
 
 		}
