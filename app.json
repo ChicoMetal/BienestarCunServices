@@ -1,0 +1,6 @@
+{
+  "name": "Servicios BienestarCunApp",
+  "description": "Servicios de la aplicacion de bienestar de la universidad",
+  "repository": "git@github.com:ChicoMetal/BienestarCUN.git",
+  "addons": []
+}
