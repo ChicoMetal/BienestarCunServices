@@ -2,7 +2,7 @@
 
 	//$PATH = $_SERVER["DOCUMENT_ROOT"]."/BienestarCun/";
 	$PATH = $_SERVER["DOCUMENT_ROOT"];
-
+echo $PATH;
 	function listar_directorios_ruta($PATH){ 
    // abrir un directorio y listarlo recursivo 
    if (is_dir($ruta)) { 
