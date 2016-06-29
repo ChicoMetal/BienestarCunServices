@@ -3,7 +3,7 @@
 	//$PATH = $_SERVER["DOCUMENT_ROOT"]."/BienestarCun/";
 	$PATH = $_SERVER["DOCUMENT_ROOT"];
 
-	function listar_directorios_ruta($ruta){ 
+/*	function listar_directorios_ruta($ruta){ 
 	   // abrir un directorio y listarlo recursivo 
 	   if (is_dir($ruta)) { 
 	      if ($dh = opendir($ruta)) { 
@@ -23,5 +23,5 @@
 	      echo "<br>No es ruta valida"; 
 	}
 	
-	listar_directorios_ruta($PATH);
+	listar_directorios_ruta($PATH);*/
 ?>
