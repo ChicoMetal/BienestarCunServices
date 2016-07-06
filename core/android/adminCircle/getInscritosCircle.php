@@ -11,13 +11,13 @@
 	require_once($PATH.'core/mesages.php');
 
 
-	$circle 			= isset( $_POST["circle"] )			? $_POST["circle"] 			: '';
+	$circle 			= isset( $_POST["circle"] )			? $_POST["circle"] 			: '1';
 
 	if( $circle != '' ){
 
 		$sql = "SELECT p.Identificacion, CONCAT( p.Nombres,' ', p.Apellidos ) AS name
 				FROM personas p, usuarios u, usuariocirculo uc, circulos c
-				WHERE p.Identificacion = u.Id AND u.Id = uc.Usuario AND c.Id = $circle";
+				WHERE p.Identificacion = u.Id AND u.Id = uc.Usuario AND uc.Circulo = c.Id AND c.Id = $circle";
 
 		$result = BuscarDatos( $sql );
 

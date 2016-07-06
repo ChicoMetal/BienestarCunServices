@@ -111,20 +111,20 @@
 
 	function DatosConexion(){
 
-		$datosConexion = '{
+/*		$datosConexion = '{
 			"bd_host" 		: "www.db4free.net", 
 			"bd_usuario" 	:  "krlos1991", 
 			"bd_password" 	:  "19915991",
 			"bd_base" 		:  "bienestarcun"
 		}';
-
-/*		$datosConexion = '{
+*/
+		$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "root", 
 			"bd_password" 	:  "",
 			"bd_base" 		:  "bienestarcun"
 		}';
-*/
+
 		/*$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "ottsinc_examen", 
