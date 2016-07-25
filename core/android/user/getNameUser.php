@@ -29,4 +29,8 @@
 
 		}
 
+	}else{
+
+		echo $GLOBALS['resB2'];
+
 	}
