@@ -12,21 +12,10 @@
 
 	$remitente 	= isset( $_POST["remitente"] )		? $_POST["remitente"] 		: '';
 	$receptor 	= isset( $_POST["receptor"] )		? $_POST["receptor"] 		: '';
-	$mensaje 	= isset( $_POST["mensaje"] )		? $_POST["mensaje"] 		: '';
+
 
 	if( $remitente != '' &&  $receptor != ''){
 	
-
-		if( $mensaje != ''){
-
-			$sql = "INSERT INTO chatpsicologia(Mensaje, Remitente, Destinatario)
-					VALUES('$mensaje','$remitente', '$receptor')";
-
-			InsertarDatos( $sql ) == $GLOBALS['resA4'];
-
-		}
-
-
 		$sql = "SELECT cp.Remitente, cp.Mensaje
 				FROM chatpsicologia cp
 				WHERE cp.Remitente = '$receptor' AND cp.Destinatario ='$remitente' AND cp.Estado = FALSE
