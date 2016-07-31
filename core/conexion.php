@@ -118,19 +118,19 @@
 			"bd_base" 		:  "bienestarcun"
 		}';
 */
-		$datosConexion = '{
+		/*$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "root", 
 			"bd_password" 	:  "",
 			"bd_base" 		:  "bienestarcun"
-		}';
+		}';*/
 
-		/*$datosConexion = '{
+		$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "ottsinc_examen", 
 			"bd_password" 	:  "examen0000",
 			"bd_base" 		:  "ottsinc_bienestarcun"
-		}';*/
+		}';
 
 		$datosConexion = json_decode( $datosConexion );
 
