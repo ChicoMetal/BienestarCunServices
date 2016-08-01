@@ -111,13 +111,13 @@
 
 	function DatosConexion(){
 
-/*		$datosConexion = '{
+		$datosConexion = '{
 			"bd_host" 		: "www.db4free.net", 
 			"bd_usuario" 	:  "krlos1991", 
 			"bd_password" 	:  "19915991",
 			"bd_base" 		:  "bienestarcun"
 		}';
-*/
+
 		/*$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "root", 
@@ -125,12 +125,12 @@
 			"bd_base" 		:  "bienestarcun"
 		}';*/
 
-		$datosConexion = '{
+		/*$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "ottsinc_examen", 
 			"bd_password" 	:  "examen0000",
 			"bd_base" 		:  "ottsinc_bienestarcun"
-		}';
+		}';*/
 
 		$datosConexion = json_decode( $datosConexion );
 
