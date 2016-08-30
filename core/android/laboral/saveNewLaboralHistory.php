@@ -30,8 +30,18 @@
 
 			$idle = $result[0][0]->$result[1][0];
 
-			$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, FechaFin, LaboralEgresado)
-			 VALUES('$empresa', '$cargo', '$dateStart', '$dateEnd', '$idle')";
+			if( $dataEnd != '' ){
+
+				$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, FechaFin, LaboralEgresado)
+				 VALUES('$empresa', '$cargo', '$dateStart', '$dateEnd', '$idle')";
+			
+			}else{
+
+				$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, LaboralEgresado)
+				 VALUES('$empresa', '$cargo', '$dateStart', '$idle')";
+
+			}
+
 
 			echo InsertarDatos( $sql );
 

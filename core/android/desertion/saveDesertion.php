@@ -12,9 +12,10 @@
 
 	$user 		= isset( $_POST["user"] )			? $_POST["user"] 			: '';
 	$desertor	= isset( $_POST["desertor"] )		? $_POST["desertor"] 		: '';
+	$descripcion= isset( $_POST["descripcion"] )	? $_POST["descripcion"] 	: '';
 	$horario	= isset( $_POST["horario"] )		? $_POST["horario"] 		: '';
 
-	if( $user != '' && $desertor != '' && $horario != ''){
+	if( $user != '' && $desertor != '' && $descripcion != '' && $horario != ''){
 
 		$sql = "SELECT Identificacion, Nombres, COUNT(*) AS existe  FROM personas WHERE Identificacion = '$desertor'";
 
@@ -24,7 +25,7 @@
 
 		if( is_array( $result ) AND $result[0][0]->$result[1][2] != "0"  ){//verifico la existencia del usuario
 
-			$sql = "INSERT INTO desercion(Jornada, Desertor, Usuario) VALUES( '$horario', $desertor, $user )";
+			$sql = "INSERT INTO desercion(Descripcion, Jornada, Desertor, Usuario) VALUES( '$descripcion', '$horario', $desertor,  $user )";
 
 			echo InsertarDatos( $sql );
 
