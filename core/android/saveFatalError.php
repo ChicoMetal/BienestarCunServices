@@ -11,11 +11,13 @@
 	require_once($PATH.'core/android/user/mesages_user.php');
 
 
-	$contenido 	= isset( $_POST["contenido"] )		? $_POST["contenido"] 		: '';
+	$contenido 	= isset( $_POST["contenido"] )		? $_POST["contenido"] 		: 'ssadasdasd';
 
 	if ( $contenido != '' ){
 
-		echo SaveDepuration( $contenido );
+		$result = SaveDepuration( $contenido );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}
 

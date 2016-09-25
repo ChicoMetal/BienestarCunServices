@@ -6,6 +6,6 @@
 
 	require_once($PATH.'core/target_peticion.php'); //################ habilitar
 
-	$resDA1 = "[msm, '00']";	//No existe el usuario a reportar
+	$resDA1 = '["msm", "00"]';	//No existe el usuario a reportar
 
 ?>

@@ -12,6 +12,7 @@
 
 	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
 
+
 	if( $user != '' ){
 
 		$sql = "SELECT c.Id, c.Nombre, c.Descripcion, CONCAT( p.Nombres, ' ', p.Apellidos) AS Admin 
@@ -23,16 +24,26 @@
 		
 		$result = BuscarDatos( $sql );
 
+
 		if( is_array( $result) ){//verifico si es un array o un string para encodearlo o no
-			echo json_encode( $result );
+			
+			$list =  json_encode( $result );
+			echo ('{"result":'.$list.'}' );
+
 		}else{
-			echo $result;
+			
+			 echo ('{"result":  '.$result.'  }' );
+
 		}
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
+
+		
+
+	
 
 ?>
