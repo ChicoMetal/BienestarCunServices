@@ -24,17 +24,10 @@
 		
 		$result = BuscarDatos( $sql );
 
+		$result = json_encode( $result );
 
-		if( is_array( $result) ){//verifico si es un array o un string para encodearlo o no
-			
-			$list =  json_encode( $result );
-			echo ('{"result":'.$list.'}' );
+		echo ('{"result":  '.$result.'  }' );
 
-		}else{
-			
-			 echo ('{"result":  '.$result.'  }' );
-
-		}
 
 	}else{
 

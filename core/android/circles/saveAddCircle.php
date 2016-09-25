@@ -18,11 +18,15 @@
 
 		$sql = "INSERT INTO usuariocirculo(Usuario, Circulo) VALUES( $user, $circle)";
 
-		echo InsertarDatos( $sql );
+		$result = InsertarDatos( $sql );
+
+		$result = json_encode( $result );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 

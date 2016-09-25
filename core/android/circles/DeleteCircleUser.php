@@ -17,11 +17,15 @@
 
 		$sql = "DELETE FROM usuariocirculo WHERE Usuario = $user AND Circulo = $circle LIMIT 1";
 
-		echo InsertarDatos( $sql );
+		$result = InsertarDatos( $sql );
+
+		$result = json_encode( $result );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 

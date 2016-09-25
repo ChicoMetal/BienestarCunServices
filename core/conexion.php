@@ -15,7 +15,7 @@
 
 		if( !is_object( $conexion) ){
 
-			return ( $GLOBALS['resA1'] );
+			return ( json_decode( $GLOBALS['resA1'] ) );
 
 		}
 
@@ -24,7 +24,7 @@
 
 		if ( !$respuesta ) { //verifico si existen resultados
 
-			return( $GLOBALS['resA3'] ); //no existen datos
+			return( json_decode( $GLOBALS['resA3'] ) ); //no existen datos
 
 		}else{
 
@@ -52,7 +52,7 @@
 				//return json_decode("{'resultado':'$rows','indices':'$index'}") ; //retorno indices y valores de la consulta
 	
 			}else{
-				return( $GLOBALS['resA3'] );  //no existen datos
+				return( json_decode( $GLOBALS['resA3'] ) );  //no existen datos
 			}
 		}					
 	}
@@ -63,12 +63,13 @@
 
 		if( !is_object( $conexion ) ){ //verifico que la conexion sea correcta
 
-			return $GLOBALS[ 'resA1' ];
+			return json_decode( $GLOBALS[ 'resA1' ] );
 
 		}
 
 
-		return mysqli_query( $conexion, $sql ) ? $GLOBALS[ 'resA4' ]: $GLOBALS[ 'resA2' ] ; //Insertar datos
+		return mysqli_query( $conexion, $sql ) ? json_decode( $GLOBALS[ 'resA4' ] ): 
+												 json_decode( $GLOBALS[ 'resA2' ] ) ; //Insertar datos
 	}
 
 	function ConexionMysql(){
@@ -84,7 +85,7 @@
 		
 		if ( !$conexion ) {
 
-			return $GLOBALS[ 'resA1' ];
+			return json_decode( $GLOBALS[ 'resA1' ] );
 
 		}else{
 
@@ -95,7 +96,7 @@
 
 			if ( !$seleccionar_bd ) {
 
-				return  $GLOBALS[ 'resA5' ];
+				return  json_decode( $GLOBALS[ 'resA5' ] );
 
 			}else{
 
