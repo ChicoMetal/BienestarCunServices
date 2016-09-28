@@ -19,11 +19,15 @@
 
 		$sql = "INSERT INTO logs(Usuario, Token) VALUES('$id_user','$Token')";
 
-		echo InsertarDatos( $sql );
+		$result = InsertarDatos( $sql );
+		
+		$result = json_encode( $result );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 

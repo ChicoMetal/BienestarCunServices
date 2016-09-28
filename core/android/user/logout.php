@@ -24,17 +24,19 @@
 
 		if( $result == $GLOBALS['resA4'] ){
 
-			echo $GLOBALS['resUA5'];
+			echo  ('{"result":  '.$GLOBALS['resUA5'].'  }' );
 			
 		}else{
 
-			echo $result;
+			$result = json_encode( $result );
+
+			echo  ('{"result":  '.$GLOBALS['resUA5'].'  }' );
 		}
 		
 	}else{
 
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	
 	}

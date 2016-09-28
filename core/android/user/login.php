@@ -30,20 +30,22 @@
 
 		$result = BuscarDatos($sql);
 
-		if ( !is_array( $result)  ){//Verifico si la respuesta es un objeto
-
-			if( $result == $GLOBALS['resA3'] ){ //Pregunto si no se encontro registros
+		if ( $result[0] == "msm"  ){//Verifico si la respuesta es un objeto
+			
+			if( $result == json_decode( $GLOBALS['resA3'] ) ){ //Pregunto si no se encontro registros
 
 				include_once( $PATH.'core/android/user/logFails.php');
 
 				SaveLogFails(false, $user, $pass );//guardo el intento fallido de login
 
-				echo $GLOBALS['resUA2']; //retorno usuario inexistente
+				echo  ('{"result":  '.$GLOBALS['resUA2'].'  }' );//retorno usuario inexistente
 				exit(0);
 
 			}else{
 
-				echo  $result;
+				$result = json_encode( $result );
+
+				echo ('{"result":  '.$result.'  }' );
 				exit(0);
 
 			}
@@ -54,7 +56,9 @@
 
 			array_push( $result, $token ); //agrego el token al array
 
-			echo json_encode( $result );
+			$result = json_encode( $result );
+
+			echo ('{"result":  '.$result.'  }' );
 			exit(0);
 
 		}else{
@@ -63,13 +67,13 @@
 
 			SaveLogFails(true, $user, $pass, $result[0][0]->$result[1][0] );//guardo el intento fallido de login con la foranea
 
-			echo $GLOBALS['resUA4'];
+			echo  ('{"result":  '.$GLOBALS['resUA4'].'  }' );
 			exit(0);
 		}
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 		exit(0);
 
 	}
