@@ -23,8 +23,12 @@
 
 		$result = BuscarDatos( $sql ); //obtengo el circulo al cual esta administrando el docente enviado
 
-		if( is_array( $result) ){
-		
+		if( $result[0] == "msm" ){
+
+			echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+
+		}else{
+
 			$circulo = $result[0][0]->$result[1][0];
 
 			$datefinal = $date." ".$hour;
@@ -32,17 +36,17 @@
 			$sql = "INSERT INTO itinerarios(Actividad, Detalle, Fecha, Circulo)
 				VALUES('$nameActiviti', '$detailActivitie', '$datefinal', '$circulo')";
 
-			 echo InsertarDatos($sql);
+			$result =  InsertarDatos($sql);
 
-		}else{
+			$result = json_encode( $result );
 
-			echo $result;
+			echo ('{"result":  '.$result.'  }' );
 
 		}
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 		

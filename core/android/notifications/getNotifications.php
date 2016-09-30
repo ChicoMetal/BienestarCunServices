@@ -12,23 +12,56 @@
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
+	require_once($PATH.'core/constant.php');
 
-	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '6';
+	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
 
 	if( $user != ''){
-		
-		//TODO dependiendo del tipo de usuario buscar las notificaciones
-		$sql = "SELECT n.id, n.Fecha, n.Notificacion, n.Estado, c.Nombre
-				FROM notificaciones n, circulos c, usuariocirculo uc, usuarios u
-				WHERE n.Circulo = c.id AND uc.Circulo = c.id  AND uc.Usuario = u.Id
-					AND n.Fecha >= NOW() AND uc.Usuario = '$user'";//busco circulos que el usuario no tenga inscritos
 
-		
+		$sql = "SELECT id, Tipo FROM usuarios WHERE id = '$user'";
+
 		$result = BuscarDatos( $sql );
 
-		$result = json_encode( $result );
+		if( $result[0] == 'msm' ){
 
-		echo ('{"result":  '.$result.'  }' );
+			echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+
+		}else{
+
+			if( $result[0][0]->$result[1][1] == $GLOBALS['tipeUser']["sadmin"] 
+				|| $result[0][0]->$result[1][1] == $GLOBALS['tipeUser']["admin"]  ){//pregunto el tipo de usuario
+
+				$sql = "SELECT n.id, n.Fecha, n.Notificacion, n.Estado, c.Nombre
+						FROM notificaciones n, circulos c, usuarios u, personas p, sede s
+						WHERE u.id = p.Identificacion 
+						AND p.Sede = s.id 
+						AND s.id = c.Sede
+						AND c.id = n.Circulo
+						AND n.Fecha >= NOW()
+						GROUP BY n.id";//busco notificaciones
+
+			}else{
+
+				$sql = "SELECT n.id, n.Fecha, n.Notificacion, n.Estado, c.Nombre
+						FROM notificaciones n, circulos c, usuariocirculo uc, usuarios u
+						WHERE n.Circulo = c.id AND uc.Circulo = c.id  AND uc.Usuario = u.Id
+							AND n.Fecha >= NOW() AND uc.Usuario = '$user'";//busco circulos que el usuario no tenga inscritos
+
+				
+			
+			}
+			
+			$result = BuscarDatos( $sql );
+
+			$result = json_encode( $result );
+
+			echo ('{"result":  '.$result.'  }' );
+
+			
+		}
+
+
+		
 
 	}else{
 

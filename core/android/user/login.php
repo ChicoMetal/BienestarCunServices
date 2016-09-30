@@ -1,13 +1,5 @@
 <?php
 
-	//1111 = Super Administrador
-	//1110 = Administrador
-	//1101 = Administrador de circulo
-	//1100 = Docente CUN
-	//1011 = Estudiante
-	//1010 = Estudiante egresado
-	//1001 = Psicologa
-	//1000 = Usuario sin loguear
 
 	if( !isset($PATH) ){//verifico si existe la variable con la ruta absoluta
 		include_once("../../../PATH.php");				
