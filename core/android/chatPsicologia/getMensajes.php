@@ -25,21 +25,21 @@
 		
 		$result = BuscarDatos( $sql );
 
-		if( is_array( $result) ){//verifico si es un array o un string para encodearlo o no
+		if( $result[0] != "msm" ){//verifico si es un array o un string para encodearlo o no
 			
-			echo json_encode( $result ); //retorno mensajes sin leer
+			$result = json_encode( $result ); //retorno mensajes sin leer
 
-			$sql = " UPDATE chatpsicologia SET Estado = TRUE WHERE Remitente = '$receptor' "; //actualizo los mensajes a leidos
-
-			InsertarDatos( $sql );
+			echo ('{"result":  '.$result.'  }' );
 
 		}else{
-			echo $result;
+			
+			echo ('{"result":  '.$result.'  }' );
+			
 		}
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 ?>

@@ -27,15 +27,13 @@
 		
 		$result = BuscarDatos( $sql );
 
-		if( is_array( $result) ){//verifico si es un array o un string para encodearlo o no
-			echo json_encode( $result );
-		}else{
-			echo $result;
-		}
+		$result = json_encode( $result );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 ?>

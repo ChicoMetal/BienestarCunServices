@@ -10,7 +10,7 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
-	$usuario 	= isset( $_POST["usuario"] )		? $_POST["usuario"] 		: '';
+	$usuario 	= isset( $_POST["usuario"] )		? $_POST["usuario"] 		: '1104379';
 
 	if( $usuario != ''){
 	
@@ -18,14 +18,13 @@
 
 		$result = BuscarDatos( $sql );
 
-		if( is_array( $result ) )
-			echo json_encode( $result );
-		else
-			echo $result;
+		$result = json_encode( $result );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 ?>
