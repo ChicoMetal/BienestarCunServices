@@ -28,7 +28,7 @@
 			
 			SaveDepuration( $contenido );
 
-			echo $GLOBALS['resZ'];
+			echo  ('{"result":  '.$GLOBALS['resZ'].'  }' );
 			exit(0);
 			//print_r($error['message']);//Capturo el Error
 

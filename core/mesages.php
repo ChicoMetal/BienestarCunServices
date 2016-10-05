@@ -15,5 +15,5 @@
 	$resB3 = '["msm","1100"]'; /* Instruccion ejecutada correctamente*/
 	$resB4 = '["msm","1101"]'; /* Peticion indeterminada */
 
-	$resZ = '["msm","0000000000"]'; /* Error en el server */
+	$resZ = '["msm","000000000"]'; /* Error en el server */
 ?>
