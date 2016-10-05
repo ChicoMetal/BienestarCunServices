@@ -20,13 +20,23 @@
 
 		$result = BuscarDatos( $sql );
 
-		if( is_array( $result ) ){
+		if( $result[0] != "msm" ){
 
 
-			$sql = "UPDATE laboralegresado SET Laborando = '$status'";
+			$sql = "UPDATE laboralegresado SET Laborando = '$status' WHERE Id = '$user' ";
 
-			echo InsertarDatos( $sql );
-			
+			$result = InsertarDatos( $sql );
+
+			$result = json_encode( $result );
+
+			echo ('{"result":  '.$result.'  }' );
+
+			if( $status == false ){//si el estado es no laborando, actualizo las fechas finales que esten null
+
+				$sql = "UPDATE historiallaboral SET FechaFin = DATE( NOW() ) WHERE laboralegresado = '$user'";
+
+				InsertarDatos( $sql );//actualizar fecha de finalizacion historiales anteriores
+			}
 
 		}else{
 
@@ -34,14 +44,16 @@
 
 			$result = InsertarDatos( $sql );
 
-			echo $result;
+			$result = json_encode( $result );
+
+			echo ('{"result":  '.$result.'  }' );
 
 		}
 
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 		

@@ -18,19 +18,13 @@
 		$sql = "SELECT Nombres, Apellidos FROM personas WHERE Identificacion = '$user'";
 
 		$result = BuscarDatos( $sql );
+		
+		$result = json_encode( $result );
 
-		if ( is_array( $result)  ){//Verifico si la respuesta es un objeto
-
-			echo json_encode( $result );
-
-		}else{
-
-			echo $result;
-
-		}
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}

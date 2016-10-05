@@ -25,56 +25,41 @@
 
 		$result = BuscarDatos( $sql );
 
-		if( is_array( $result ) ){
+		if( $result[0] != "msm" ){//si ya se creo la relacion entre el egresado y laboral
 
 
-			$idle = $result[0][0]->$result[1][0];
+			$result = SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd, $user );
 
-			if( $dataEnd != '' ){
-
-				$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, FechaFin, LaboralEgresado)
-				 VALUES('$empresa', '$cargo', '$dateStart', '$dateEnd', '$idle')";
-			
-			}else{
-
-				$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, LaboralEgresado)
-				 VALUES('$empresa', '$cargo', '$dateStart', '$idle')";
-
-			}
-
-
-			echo InsertarDatos( $sql );
+			echo ('{"result":  '.$result.'  }' );
 
 			
-		}else{
+		}else{//En caso no este creada la relacion de egresado y laboral, la creo
 
 			$sql = "INSERT INTO laboralegresado(Id) VALUES('$user')";
 
 			$result = InsertarDatos( $sql );
 
-			if( $result == $GLOBALS[ 'resA4' ] ){
+			if( $result == json_decode( $GLOBALS['resA4'] ) ){//verifico la creacion de la relacion
 
 				$sql = "SELECT Id, Laborando FROM laboralegresado WHERE Id = '$user'";
 
 				$result = BuscarDatos( $sql );
 
-				if( is_array( $result ) ){
+				if( $result[0] != "msm" ){//confirmo una ves mas que este creada la relacion
 
+					$result = SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd, $user );
 
-					$idle = $result[0][0]->$result[1][0];
-
-					$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, FechaFin, LaboralEgresado)
-					 VALUES('$empresa', '$cargo', '$dateStart', '$dateEnd', '$idle')";
-
-					echo InsertarDatos( $sql );					
+					echo ('{"result":  '.$result.'  }' );					
 
 				}else{
-					echo $result;
+					
+					echo ('{"result":  '.$result.'  }' );
+
 				}
 
 			}else{
 
-				echo $GLOBALS['resB2'];
+				echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 			}
 
 		}
@@ -82,10 +67,38 @@
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
+	
+
+	function SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd , $user){
+		//guarda el historial 
+
+		$Codigo = $result[0][0]->$result[1][0];
+
+		if( $dateEnd != '' ){
+
+			$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, FechaFin, LaboralEgresado)
+			 VALUES('$empresa', '$cargo', '$dateStart', '$dateEnd', '$Codigo')";
 		
+		}else{
+
+			$sql = "INSERT INTO historiallaboral(Empresa, Cargo, FechaInicio, LaboralEgresado)
+			 VALUES('$empresa', '$cargo', '$dateStart', '$Codigo')";
+
+			 $sqlStatus = "UPDATE laboralegresado SET Laborando = true WHERE Id = '$user' ";
+
+			 InsertarDatos( $sqlStatus );//actualizar estado laboral a laborando
+
+		}
+
+		$result =  InsertarDatos( $sql );//guardo el historial enviado
+
+		$result = json_encode( $result );
+
+		return $result;
+	}
 
 ?>
 

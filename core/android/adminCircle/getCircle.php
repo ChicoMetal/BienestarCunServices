@@ -21,14 +21,13 @@
 
 		$result = BuscarDatos( $sql );
 
-		if( is_array( $result) )
-			echo json_encode( $result );
-		else
-			echo $result;
+		$result = json_encode( $result );
+
+		echo ('{"result":  '.$result.'  }' );
 
 	}else{
 
-		echo $GLOBALS['resB2'];
+		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
 
 	}
 		
