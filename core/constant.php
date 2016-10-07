@@ -30,5 +30,11 @@
 			"user" 			=> "1000"
 		);
 
+	$statusItinerario = Array( 
+			"pendiente" 		=> "111",
+			"aplazado" 			=> "110",
+			"cancelado" 		=> "000"
+		);
+
 
 ?>

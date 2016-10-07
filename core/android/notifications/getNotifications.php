@@ -11,8 +11,8 @@
 	require_once($PATH.'core/funtion.php');
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
-	require_once($PATH.'core/mesages.php');
 	require_once($PATH.'core/constant.php');
+	require_once($PATH.'core/mesages.php');
 
 	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
 

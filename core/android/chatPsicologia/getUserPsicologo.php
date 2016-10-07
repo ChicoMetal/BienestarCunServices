@@ -10,7 +10,7 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
-	$usuario 	= isset( $_POST["usuario"] )		? $_POST["usuario"] 		: '1104379';
+	$usuario 	= isset( $_POST["usuario"] )		? $_POST["usuario"] 		: '';
 
 	if( $usuario != ''){
 	
