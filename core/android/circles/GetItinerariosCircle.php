@@ -11,9 +11,11 @@
 	require_once($PATH.'core/mesages.php');
 	require_once($PATH.'core/android/circles/mesages_circles.php');
 
-	$circle 	= isset( $_POST["circle"] )		? $_POST["circle"] 		: '';
+	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$token 	= isset( $_POST["token"] )		? $_POST["token"] 		: '';
+	$circle = isset( $_POST["circle"] )		? $_POST["circle"] 		: '';
 
-	if( $circle != '' ){
+	if( $user != '' && $token != '' && $circle != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "SELECT i.id, i.Actividad, i.Fecha, i.Estado, i.Detalle
 				FROM itinerarios i 
@@ -21,15 +23,11 @@
 					AND i.Estado = '{$GLOBALS['statusItinerario']['pendiente'] }' ";//busco itinerarios de  los circulos que el usuario tenga inscritos
 				
 		
-		$result = BuscarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ('{"result":  '.$result.'  }' );
+		echo BuscarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 

@@ -6,7 +6,7 @@
 
 	require_once($PATH.'core/target_peticion.php'); //################ habilitar
 
-	$resIA1 = '["mss", "000"]';	//Pendiente
-	$resIA2 = '["mss", "001"]';	//Aplazado
-	$resIA3 = '["mss", "010"]';	//Cancelado
+	$resIA1 = '{ "result": ["mss", "000"] }';	//Pendiente
+	$resIA2 = '{ "result": ["mss", "001"] }';	//Aplazado
+	$resIA3 = '{ "result": ["mss", "010"] }';	//Cancelado
 ?>

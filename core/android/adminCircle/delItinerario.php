@@ -14,23 +14,21 @@
 	require_once($PATH.'core/mesages.php');
 	require_once($PATH.'core/constant.php');
 
-	$itinerario 	= isset( $_POST["idItinerario"] )		? $_POST["idItinerario"] 		: '';
+	$user 			= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 			= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+	$itinerario 	= isset( $_POST["idItinerario"] )	? $_POST["idItinerario"] 	: '';
 
-	if( $itinerario != '' ){
+	if( $user != '' && $token != '' && $itinerario != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "UPDATE itinerarios 
 				SET Estado = '{$GLOBALS['statusItinerario']["cancelado"]}' 
 				WHERE id = '$itinerario' ";
 
-		$result = InsertarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ('{"result":  '.$result.'  }' );
+		echo InsertarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 

@@ -10,12 +10,14 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
+	$user 			= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 			= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+	$json 			= isset( $_POST["listObject"] )		? $_POST["listObject"] 		: '';
 
-	$json 			= isset( $_POST["listObject"] )			? $_POST["listObject"] 			: '';
+	if( $user != '' && $token != '' && $json != '' && ValidateToken( $token, $user ) ){
 
-	if( $json != '' ){
+		$object = json_decode( $json );
 
-		$object = json_decode($json);
 		$size = count( $object[0] );
 		
 		$item0 = $object[1]->item0;
@@ -33,8 +35,10 @@
 							FROM asistencias 
 							WHERE Itinerario = '$itinerario' AND Usuario = '$usuario' ";
 
-			$resultExists = BuscarDatos( $sqlExists );//verifico que no se halla guardado ya una asistencia
+			$resultExists = json_decode( BuscarDatos( $sqlExists ) );//verifico que no se halla guardado ya una asistencia
 			
+			$resultExists = $resultExists->result;
+
 			if( $resultExists[0] != "msm" ){
 
 				$data = $resultExists[0];
@@ -57,19 +61,15 @@
 
 			$sql = "INSERT INTO asistencias(Presencia, Usuario, Itinerario) ".$sqlInsert;
 			
-			$result = InsertarDatos( $sql );
-			
-			$result = json_encode( $result );
-
-			echo ('{"result":  '.$result.'  }' );
+			echo InsertarDatos( $sql );
 
 		}else{
-			echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+			echo  $GLOBALS['resB2'];
 		}
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 		

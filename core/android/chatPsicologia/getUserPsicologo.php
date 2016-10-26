@@ -8,23 +8,23 @@
 	require_once($PATH.'core/funtion.php');
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
+	require_once($PATH.'core/constant.php');
 	require_once($PATH.'core/mesages.php');
 
 	$usuario 	= isset( $_POST["usuario"] )		? $_POST["usuario"] 		: '';
+	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
 
-	if( $usuario != ''){
+	if( $usuario != '' && $token != "" && ValidateToken( $token, $usuario ) ){
 	
-		$sql = "SELECT Id, Tipo FROM usuarios WHERE Tipo = '1001' AND Estado = TRUE LIMIT 1";
+		$sql = "SELECT Id, Tipo FROM usuarios 
+				WHERE Tipo = '{$GLOBALS['tipeUser']['psicologia'] }' 
+				AND Estado = TRUE LIMIT 1";
 
-		$result = BuscarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ('{"result":  '.$result.'  }' );
+		echo BuscarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo $GLOBALS['resB2'];
 
 	}
 ?>

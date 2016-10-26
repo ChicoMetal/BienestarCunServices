@@ -12,9 +12,11 @@
 
 	$remitente 	= isset( $_POST["remitente"] )		? $_POST["remitente"] 		: '';
 	$receptor 	= isset( $_POST["receptor"] )		? $_POST["receptor"] 		: '';
+	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
 
 
-	if( $remitente != '' &&  $receptor != ''){
+	if( $remitente != '' &&  $receptor != '' &&  $token != '' && ValidateToken( $token, $remitente ) ){
+	
 	
 		$sql = "SELECT cp.Remitente, cp.Mensaje
 				FROM chatpsicologia cp
@@ -23,23 +25,11 @@
 				ORDER BY cp.Fecha";//busco mensajes enviados sin leer
 
 		
-		$result = BuscarDatos( $sql );
-
-		if( $result[0] != "msm" ){//verifico si es un array o un string para encodearlo o no
-			
-			$result = json_encode( $result ); //retorno mensajes sin leer
-
-			echo ('{"result":  '.$result.'  }' );
-
-		}else{
-			
-			echo ('{"result":  '.$result.'  }' );
-			
-		}
+		echo BuscarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo $GLOBALS['resB2'];
 
 	}
 ?>

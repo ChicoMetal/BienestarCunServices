@@ -9,15 +9,20 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 	
+	$user 		= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
 
-	$sql = " SELECT id, Facultad FROM facultad WHERE Estado = true";
+	if( $user != "" && $token !="" && ValidateToken( $token, $user ) ){
 
-	$result = BuscarDatos( $sql );
+		$sql = " SELECT id, Facultad FROM facultad WHERE Estado = true";
+	
+		echo BuscarDatos( $sql );
 
-	$result = json_encode( $result );
 
-	echo ('{"result":  '.$result.'  }' );	
+	}else{
 
+		echo $GLOBALS['resB2'];
+	}
 
 
 ?>

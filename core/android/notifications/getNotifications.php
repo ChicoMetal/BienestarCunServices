@@ -24,7 +24,7 @@
 
 		if( $result[0] == 'msm' ){
 
-			echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+			echo  $GLOBALS['resB2'];
 
 		}else{
 
@@ -51,21 +51,15 @@
 			
 			}
 			
-			$result = BuscarDatos( $sql );
-
-			$result = json_encode( $result );
-
-			echo ('{"result":  '.$result.'  }' );
+			echo BuscarDatos( $sql );
 
 			
 		}
 
 
-		
-
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 

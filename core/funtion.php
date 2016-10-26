@@ -28,7 +28,7 @@
 			
 			SaveDepuration( $contenido );
 
-			echo  ('{"result":  '.$GLOBALS['resZ'].'  }' );
+			echo  $GLOBALS['resZ'];
 			exit(0);
 			//print_r($error['message']);//Capturo el Error
 
@@ -55,6 +55,30 @@
 					VALUES('$contenido')";
 
 		return InsertarDatos( $sql );
+	}
+
+	function ValidateToken( $token, $user ){
+
+		$sql = " SELECT count(*) AS logueado
+				FROM logs
+				WHERE Usuario = '$user' AND Token = '$token' AND Estado = TRUE ";
+
+		$result = json_decode( BuscarDatos( $sql ) );
+
+		$existe = $result->result;
+
+
+		if( $existe[0][0]->$existe[1][0] > 0 ){
+
+			return true;
+
+		}else{
+
+			return false;
+			
+		}
+
+		return false;
 	}
 
 

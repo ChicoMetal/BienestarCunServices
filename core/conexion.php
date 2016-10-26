@@ -15,7 +15,7 @@
 
 		if( !is_object( $conexion) ){
 
-			return ( json_decode( $GLOBALS['resA1'] ) );
+			return ( $GLOBALS['resA1'] );
 
 		}
 
@@ -24,7 +24,7 @@
 
 		if ( !$respuesta ) { //verifico si existen resultados
 
-			return( json_decode( $GLOBALS['resA3'] ) ); //no existen datos
+			return( $GLOBALS['resA3'] ); //no existen datos
 
 		}else{
 
@@ -48,11 +48,13 @@
 
 				}			
 			
-				return array($rows,$index) ; //retorno indices y valores de la consulta
-				//return json_decode("{'resultado':'$rows','indices':'$index'}") ; //retorno indices y valores de la consulta
+				$result = json_encode( array($rows,$index) );//array con resultados e indices
+
+				return ('{"result":  '.$result.'  }' );
 	
 			}else{
-				return( json_decode( $GLOBALS['resA3'] ) );  //no existen datos
+
+				return( $GLOBALS['resA3'] );  //no existen datos
 			}
 		}					
 	}
@@ -68,8 +70,8 @@
 		}
 
 
-		return mysqli_query( $conexion, $sql ) ? json_decode( $GLOBALS[ 'resA4' ] ): 
-												 json_decode( $GLOBALS[ 'resA2' ] ) ; //Insertar datos
+		return mysqli_query( $conexion, $sql ) ? $GLOBALS[ 'resA4' ]: 
+												 $GLOBALS[ 'resA2' ]; //Insertar datos
 	}
 
 	function ConexionMysql(){
@@ -85,7 +87,7 @@
 		
 		if ( !$conexion ) {
 
-			return json_decode( $GLOBALS[ 'resA1' ] );
+			return $GLOBALS[ 'resA1' ];
 
 		}else{
 
@@ -96,7 +98,7 @@
 
 			if ( !$seleccionar_bd ) {
 
-				return  json_decode( $GLOBALS[ 'resA5' ] );
+				return  $GLOBALS[ 'resA5' ];
 
 			}else{
 
@@ -112,19 +114,19 @@
 
 	function DatosConexion(){
 
-		$datosConexion = '{
+		/*$datosConexion = '{
 			"bd_host" 		: "www.db4free.net", 
 			"bd_usuario" 	:  "krlos1991", 
 			"bd_password" 	:  "19915991",
 			"bd_base" 		:  "bienestarcun"
-		}';
+		}';*/
 
-		/*$datosConexion = '{
+		$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "root", 
 			"bd_password" 	:  "",
 			"bd_base" 		:  "bienestarcun"
-		}';*/
+		}';
 
 		/*$datosConexion = '{
 			"bd_host" 		: "localhost", 

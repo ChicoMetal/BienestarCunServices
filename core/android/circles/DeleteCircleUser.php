@@ -11,21 +11,18 @@
 	require_once($PATH.'core/mesages.php');
 
 	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$token 	= isset( $_POST["token"] )		? $_POST["token"] 		: '';
 	$circle	= isset( $_POST["circle"] )		? $_POST["circle"] 		: '';
 
-	if( $user != '' && $circle != ''){
+	if( $user != '' && $token != '' && $circle != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "DELETE FROM usuariocirculo WHERE Usuario = $user AND Circulo = $circle LIMIT 1";
 
-		$result = InsertarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ('{"result":  '.$result.'  }' );
+		echo InsertarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 

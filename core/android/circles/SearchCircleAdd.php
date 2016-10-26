@@ -11,8 +11,9 @@
 	require_once($PATH.'core/mesages.php');
 
 	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$token 	= isset( $_POST["token"] )		? $_POST["token"] 		: '';
 
-	if( $user != '' ){
+	if( $user != '' && $token != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "SELECT c.id, c.Nombre, c.Descripcion, CONCAT( p.Nombres, ' ', p.Apellidos) AS Admin 
 				FROM circulos c, usuarios u, personas p, usuariocirculo uc 
@@ -20,15 +21,11 @@
 				c.Estado = TRUE AND uc.Usuario = '$user' ";//busco circulos que el usuario no tenga inscritos
 
 		
-		$result = BuscarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ( '{"result":  '.$result.'  }' );
+		echo BuscarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 

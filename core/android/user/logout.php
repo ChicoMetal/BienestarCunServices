@@ -20,23 +20,15 @@
 		$sql = " UPDATE logs SET Estado = FALSE 
 					WHERE Token = '$token' AND Estado = TRUE AND Usuario = '$user' ";
 
-		$result = InsertarDatos( $sql );
+		InsertarDatos( $sql );
 
-		if( $result == $GLOBALS['resA4'] ){
+		echo  $GLOBALS['resUA5'];
 
-			echo  ('{"result":  '.$GLOBALS['resUA5'].'  }' );
-			
-		}else{
-
-			$result = json_encode( $result );
-
-			echo  ('{"result":  '.$GLOBALS['resUA5'].'  }' );
-		}
 		
 	}else{
 
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo $GLOBALS['resB2'];
 
 	
 	}

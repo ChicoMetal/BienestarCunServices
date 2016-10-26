@@ -12,8 +12,10 @@
 	require_once($PATH.'core/mesages.php');
 
 	$tipuser 	= isset( $_POST["tipuser"] )		? $_POST["tipuser"] 		: '';
+	$user 		= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
 
-	if( $tipuser != ''){
+	if( $tipuser != '' && $user !="" && $token !="" && ValidateToken( $token, $user ) ){
 	
 
 		//TODO dependiendo del tipo de usuario buscar las notificaciones
@@ -24,15 +26,11 @@
 				GROUP BY cp.Remitente";//busco circulos que el usuario no tenga inscritos
 
 		
-		$result = BuscarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ('{"result":  '.$result.'  }' );
+		echo BuscarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 ?>

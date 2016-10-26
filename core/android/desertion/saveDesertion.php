@@ -11,44 +11,44 @@
 	require_once($PATH.'core/android/desertion/mesages_desertion.php');
 
 	$user 		= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
 	$facultad	= isset( $_POST["facultad"] )		? $_POST["facultad"] 		: '';
 	$desertor	= isset( $_POST["desertor"] )		? $_POST["desertor"] 		: '';
 	$descripcion= isset( $_POST["descripcion"] )	? $_POST["descripcion"] 	: '';
 	$horario	= isset( $_POST["horario"] )		? $_POST["horario"] 		: '';
 
-	if( $user != '' && $facultad != '' && $desertor != '' && $descripcion != '' && $horario != ''){
+	if( $user != '' && $token != '' && $facultad != '' && $desertor != '' && $descripcion != '' && $horario != '' 
+		&& ValidateToken( $token, $user ) ){
 
-		$sql = "SELECT Identificacion, Nombres, COUNT(*) AS existe  
+		$sql = "SELECT COUNT(*) AS existe
 				FROM personas 
 				WHERE Identificacion = '$desertor'";
 
-		$result = BuscarDatos( $sql );
+		$result = json_decode( BuscarDatos( $sql ) );
 
-		if( $result[0] == "msm" || $result[0][0]->$result[1][2] == "0" ){//verifico la existencia del usuario
+		$result = $result->result;
 
-			echo  ('{"result":  '.$GLOBALS['resDA1'].'  }' );
+		if( $result[0] == "msm" || $result[0][0]->$result[1][0] == "0" ){//verifico la existencia del usuario
 
-		}elseif( $result[0][0]->$result[1][2] != "0" ){
+			echo  $GLOBALS['resDA1'];
+
+		}elseif( $result[0][0]->$result[1][0] != "0" ){
 
 			$sql = "INSERT INTO desercion(Descripcion, Jornada, Facultad, Desertor, Usuario) 
 					VALUES( '$descripcion', '$horario', $facultad, $desertor,  $user )";
 
-			$result = InsertarDatos( $sql );
-
-			$result = json_encode( $result );
-
-			echo ('{"result":  '.$result.'  }' );
+			echo InsertarDatos( $sql );
 
 		}else{
 
-			echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+			echo  $GLOBALS['resB2'];
 
 		}
 
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo $GLOBALS['resB2'];
 
 	}
 

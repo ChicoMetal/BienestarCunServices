@@ -11,23 +11,21 @@
 	require_once($PATH.'core/mesages.php');
 
 
-	$circle 			= isset( $_POST["circle"] )			? $_POST["circle"] 			: '1';
+	$user 				= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 				= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+	$circle 			= isset( $_POST["circle"] )			? $_POST["circle"] 			: '';
 
-	if( $circle != '' ){
+	if( $user !="" && $token !="" && $circle != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "SELECT p.Identificacion, CONCAT( p.Nombres,' ', p.Apellidos ) AS name
 				FROM personas p, usuarios u, usuariocirculo uc, circulos c
 				WHERE p.Identificacion = u.Id AND u.Id = uc.Usuario AND uc.Circulo = c.Id AND c.Id = $circle";
 
-		$result = BuscarDatos( $sql );
-
-		$result = json_encode( $result );
-
-		echo ('{"result":  '.$result.'  }' );
+		echo BuscarDatos( $sql );
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 		

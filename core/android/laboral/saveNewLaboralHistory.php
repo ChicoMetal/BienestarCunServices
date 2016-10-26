@@ -12,6 +12,7 @@
 
 
 	$user 			= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$token 			= isset( $_POST["token"] )		? $_POST["token"] 		: '';
 	$empresa 		= isset( $_POST["empresa"] )	? $_POST["empresa"] 	: '';
 	$cargo			= isset( $_POST["cargo"] )		? $_POST["cargo"] 		: '';
 	$dateStart 		= isset( $_POST["dateStart"] )	? $_POST["dateStart"] 	: '';
@@ -19,47 +20,45 @@
 
 
 
-	if( $user != '' && $empresa != ''&& $cargo != ''&& $dateStart != ''){
+	if( $user != '' && $token != '' && $empresa != ''&& $cargo != ''&& $dateStart != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "SELECT Id, Laborando FROM laboralegresado WHERE Id = '$user'";
 
-		$result = BuscarDatos( $sql );
+		$result = json_decode( BuscarDatos( $sql ) );
+
+		$result = $result->result;
 
 		if( $result[0] != "msm" ){//si ya se creo la relacion entre el egresado y laboral
 
-
-			$result = SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd, $user );
-
-			echo ('{"result":  '.$result.'  }' );
-
+			echo SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd, $user );
 			
 		}else{//En caso no este creada la relacion de egresado y laboral, la creo
 
 			$sql = "INSERT INTO laboralegresado(Id) VALUES('$user')";
 
-			$result = InsertarDatos( $sql );
+			$result =  InsertarDatos( $sql );			
 
-			if( $result == json_decode( $GLOBALS['resA4'] ) ){//verifico la creacion de la relacion
+			if( $result == $GLOBALS['resA4'] ){//verifico la creacion de la relacion
 
 				$sql = "SELECT Id, Laborando FROM laboralegresado WHERE Id = '$user'";
 
-				$result = BuscarDatos( $sql );
+				$result = json_decode( BuscarDatos( $sql ) );
+
+				$result = $result->result;
 
 				if( $result[0] != "msm" ){//confirmo una ves mas que este creada la relacion
 
-					$result = SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd, $user );
-
-					echo ('{"result":  '.$result.'  }' );					
-
+					echo SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd, $user );
+				
 				}else{
 					
-					echo ('{"result":  '.$result.'  }' );
+					echo $result;
 
 				}
 
 			}else{
 
-				echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+				echo  $GLOBALS['resB2'];
 			}
 
 		}
@@ -67,7 +66,7 @@
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 	
@@ -75,7 +74,9 @@
 	function SaveHistory( $result, $empresa, $cargo, $dateStart, $dateEnd , $user){
 		//guarda el historial 
 
-		$Codigo = $result[0][0]->$result[1][0];
+		$index = 0;
+		$clave = $result[1]->$index;
+		$Codigo = $result[0][0]->$clave;
 
 		if( $dateEnd != '' ){
 
@@ -94,8 +95,6 @@
 		}
 
 		$result =  InsertarDatos( $sql );//guardo el historial enviado
-
-		$result = json_encode( $result );
 
 		return $result;
 	}

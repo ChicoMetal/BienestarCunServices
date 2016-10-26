@@ -6,14 +6,14 @@
 
 	require_once($PATH.'core/target_peticion.php'); //################ habilitar
 
-	$resA1 = '["msm","0000"]'; /* error al conectar  */
-	$resA2 = '["msm","0001"]'; /* error al ejecutar el query */
-	$resA3 = '["msm","0010"]'; /* No existen datos*/
-	$resA4 = '["msm","1000"]'; /* Query ejecutado correctamente */
-	$resA5 = '["msm","0100"]'; /* error al seleccionar la tabla*/
-	$resB2 = '["msm","0011"]'; /* Error en la instruccion*/
-	$resB3 = '["msm","1100"]'; /* Instruccion ejecutada correctamente*/
-	$resB4 = '["msm","1101"]'; /* Peticion indeterminada */
+	$resA1 = '{ "result": ["msm","0000"] }'; /* error al conectar  */
+	$resA2 = '{ "result": ["msm","0001"] }'; /* error al ejecutar el query */
+	$resA3 = '{ "result": ["msm","0010"] }'; /* No existen datos*/
+	$resA4 = '{ "result": ["msm","1000"] }'; /* Query ejecutado correctamente */
+	$resA5 = '{ "result": ["msm","0100"] }'; /* error al seleccionar la tabla*/
+	$resB2 = '{ "result": ["msm","0011"] }'; /* Error en la instruccion*/
+	$resB3 = '{ "result": ["msm","1100"] }'; /* Instruccion ejecutada correctamente*/
+	$resB4 = '{ "result": ["msm","1101"] }'; /* Peticion indeterminada */
 
-	$resZ = '["msm","000000000"]'; /* Error en el server */
+	$resZ = '{ "result": ["msm","000000000"]  }'; /* Error en el server */
 ?>

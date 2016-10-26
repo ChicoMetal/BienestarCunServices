@@ -12,24 +12,23 @@
 
 
 	$user 			= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$token 			= isset( $_POST["token"] )		? $_POST["token"] 		: '';
 	$status 		= isset( $_POST["status"] )		? $_POST["status"] 		: '';
 
-	if( $user != '' && $status != '' ){
+	if( $user != '' && $token != '' && $status != '' && ValidateToken( $token, $user ) ){
 
 		$sql = "SELECT Id, Laborando FROM laboralegresado WHERE Id = '$user'";
 
-		$result = BuscarDatos( $sql );
+		$result = json_decode( BuscarDatos( $sql ) );
+
+		$result = $result->result;
 
 		if( $result[0] != "msm" ){
 
 
 			$sql = "UPDATE laboralegresado SET Laborando = '$status' WHERE Id = '$user' ";
 
-			$result = InsertarDatos( $sql );
-
-			$result = json_encode( $result );
-
-			echo ('{"result":  '.$result.'  }' );
+			echo InsertarDatos( $sql );
 
 			if( $status == false ){//si el estado es no laborando, actualizo las fechas finales que esten null
 
@@ -42,18 +41,14 @@
 
 			$sql = "INSERT INTO laboralegresado(Id, Laborando) VALUES('$user', '$status')";
 
-			$result = InsertarDatos( $sql );
-
-			$result = json_encode( $result );
-
-			echo ('{"result":  '.$result.'  }' );
+			echo InsertarDatos( $sql );
 
 		}
 
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo  $GLOBALS['resB2'];
 
 	}
 		

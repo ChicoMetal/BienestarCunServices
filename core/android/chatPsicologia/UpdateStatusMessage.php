@@ -11,25 +11,21 @@
 	require_once($PATH.'core/mesages.php');
 
 	$remitente 	= isset( $_POST["remitente"] )		? $_POST["remitente"] 		: '';
+	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
 	$receptor 	= isset( $_POST["receptor"] )		? $_POST["receptor"] 		: '';
 
 
-	if( $remitente != '' &&  $receptor != ''){	
+	if( $remitente != '' &&  $receptor != '' && $token != "" && ValidateToken( $token, $remitente ) ){	
 
 			$sql = " UPDATE chatpsicologia SET Estado = TRUE WHERE Remitente = '$receptor' 
 															AND  Destinatario = '$remitente' "; //actualizo los mensajes a leidos
 
-			$result = InsertarDatos( $sql );
-
-			$result = json_encode( $result ); 
-
-			echo ('{"result":  '.$result.'  }' );
+			echo InsertarDatos( $sql );
 			
-	
 
 	}else{
 
-		echo  ('{"result":  '.$GLOBALS['resB2'].'  }' );
+		echo $GLOBALS['resB2'];
 
 	}
 ?>
