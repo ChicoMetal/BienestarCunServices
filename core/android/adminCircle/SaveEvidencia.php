@@ -10,12 +10,52 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
-	chmod("./evidencias", 0777); 
+	$directorio = "./evidencias/";
 
-	$ruta = "evidencias/" .basename($_FILES['fotoUp']['name']);
+	chmod($directorio, 0777); 
+
+	//echo '{ "result": ["msm","'.$_FILES['picture']['name'].'---------"] }';
+	//echo '{ "result": ["msm","ajaaaa"] }';
+	$user 			= isset( $_POST["user"] )			? $_POST["user"] 			: '';
+	$token 			= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+
+
+	if( ValidateToken( $token, $user ) ){
+
+		$file_name = $_FILES['picture']['name'];
+		$ruta = $directorio.$file_name;
+		$file_temp_name = $_FILES['picture']['tmp_name'];
+		
+		if ( is_uploaded_file( $file_temp_name ) && copy($file_temp_name, $ruta.'') ) {
+
+			$itinerario	= isset( $_POST["itinerario"] )			? $_POST["itinerario"] 			: '';
+
+			chmod ($directorio.$file, 0644);
+
+			echo SaveEvidenciaBD( $ruta, $itinerario );
+
+		}else{ echo $GLOBALS['resB2']; }
+
+	}else{ echo $GLOBALS['resB2']; }
 	
-	if(move_uploaded_file($_FILES['fotoUp']['tmp_name'], $ruta))
-	       chmod ("uploads/".basename( $_FILES['fotoUp']['name']), 0644);
+
+
+	function SaveEvidenciaBD( $evidencia, $itinerario ){
+		//almacena la informacion de la evidencia en la BD
+
+		if( $evidencia != "" && $itinerario != ""){
+
+			$sql = "INSERT INTO evidencias(Nombre, NombreArchivo, Ruta, Itinerario)
+					VALUES('imagenEvidencia', '$evidencia', '/evidencias', '$itinerario')";
+
+			$result = InsertarDatos( $sql );
+
+			return $result;
+
+		}else{ return  $GLOBALS['resB2']; }
+
+	}
+
 
 ?>
 
