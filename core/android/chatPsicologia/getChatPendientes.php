@@ -11,9 +11,9 @@
 	require_once($PATH.'core/constant.php');
 	require_once($PATH.'core/mesages.php');
 
-	$tipuser 	= isset( $_POST["tipuser"] )		? $_POST["tipuser"] 		: '';
-	$user 		= isset( $_POST["user"] )			? $_POST["user"] 			: '';
-	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+	$tipuser 	= isset( $_POST["tipuser"] )		? ReplaceCharacter($_POST["tipuser"]) 		: '';
+	$user 		= isset( $_POST["user"] )			? ReplaceCharacter($_POST["user"]) 			: '';
+	$token 		= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"])			: '';
 
 	if( $tipuser != '' && $user !="" && $token !="" && ValidateToken( $token, $user ) ){
 	

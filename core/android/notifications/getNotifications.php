@@ -14,13 +14,20 @@
 	require_once($PATH.'core/constant.php');
 	require_once($PATH.'core/mesages.php');
 
-	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$user 	= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 		: '';
 
 	if( $user != ''){
 
 		$sql = "SELECT id, Tipo FROM usuarios WHERE id = '$user'";
 
-		$result = BuscarDatos( $sql );
+		$result = json_decode( BuscarDatos( $sql ) );
+
+		$result = $result->result;
+		
+		if( is_object( $result[1] ) ){
+			$index = 1;
+			$key = $result[1]->$index;	
+		}
 
 		if( $result[0] == 'msm' ){
 
@@ -28,8 +35,8 @@
 
 		}else{
 
-			if( $result[0][0]->$result[1][1] == $GLOBALS['tipeUser']["sadmin"] 
-				|| $result[0][0]->$result[1][1] == $GLOBALS['tipeUser']["admin"]  ){//pregunto el tipo de usuario
+			if( $result[0][0]->$key == $GLOBALS['tipeUser']["sadmin"] 
+				|| $result[0][0]->$key == $GLOBALS['tipeUser']["admin"]  ){//pregunto el tipo de usuario
 
 				$sql = "SELECT n.id, n.Fecha, n.Notificacion, n.Estado, c.Nombre
 						FROM notificaciones n, circulos c, usuarios u, personas p, sede s

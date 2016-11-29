@@ -10,9 +10,9 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
-	$remitente 	= isset( $_POST["remitente"] )		? $_POST["remitente"] 		: '';
-	$receptor 	= isset( $_POST["receptor"] )		? $_POST["receptor"] 		: '';
-	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+	$remitente 	= isset( $_POST["remitente"] )		? ReplaceCharacter($_POST["remitente"]) 		: '';
+	$receptor 	= isset( $_POST["receptor"] )		? ReplaceCharacter($_POST["receptor"]) 			: '';
+	$token 		= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 			: '';
 
 
 	if( $remitente != '' &&  $receptor != '' &&  $token != '' && ValidateToken( $token, $remitente ) ){
@@ -20,9 +20,10 @@
 	
 		$sql = "SELECT cp.Remitente, cp.Mensaje
 				FROM chatpsicologia cp
-				WHERE cp.Remitente = '$receptor' AND cp.Destinatario ='$remitente' AND cp.Estado = FALSE OR 
-					  cp.Remitente = '$remitente' AND cp.Destinatario ='$receptor' AND cp.Estado = FALSE
-				ORDER BY cp.Fecha";//busco mensajes enviados sin leer
+				WHERE cp.Remitente = '$receptor' AND cp.Destinatario ='$remitente' OR 
+					  cp.Remitente = '$remitente' AND cp.Destinatario ='$receptor'
+				ORDER BY cp.Fecha
+				LIMIT 100";//busco mensajes enviados sin leer
 
 		
 		echo BuscarDatos( $sql );

@@ -10,12 +10,12 @@
 	require_once($PATH.'core/mesages.php');
 	require_once($PATH.'core/android/desertion/mesages_desertion.php');
 
-	$user 		= isset( $_POST["user"] )			? $_POST["user"] 			: '';
-	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
-	$facultad	= isset( $_POST["facultad"] )		? $_POST["facultad"] 		: '';
-	$desertor	= isset( $_POST["desertor"] )		? $_POST["desertor"] 		: '';
-	$descripcion= isset( $_POST["descripcion"] )	? $_POST["descripcion"] 	: '';
-	$horario	= isset( $_POST["horario"] )		? $_POST["horario"] 		: '';
+	$user 		= isset( $_POST["user"] )			? ReplaceCharacter( $_POST["user"]) 			: '';
+	$token 		= isset( $_POST["token"] )			? ReplaceCharacter( $_POST["token"]) 			: '';
+	$facultad	= isset( $_POST["facultad"] )		? ReplaceCharacter( $_POST["facultad"]) 		: '';
+	$desertor	= isset( $_POST["desertor"] )		? ReplaceCharacter( $_POST["desertor"]) 		: '';
+	$descripcion= isset( $_POST["descripcion"] )	? ReplaceCharacter( $_POST["descripcion"]) 		: '';
+	$horario	= isset( $_POST["horario"] )		? ReplaceCharacter( $_POST["horario"]) 			: '';
 
 	if( $user != '' && $token != '' && $facultad != '' && $desertor != '' && $descripcion != '' && $horario != '' 
 		&& ValidateToken( $token, $user ) ){

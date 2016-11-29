@@ -9,10 +9,10 @@
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
-	require_once($PATH.'core/android/user/mesages_user.php');
+	require_once($PATH.'core/loginResource/mesages_user.php');
 
-	$id_user 	= isset( $_POST["id_user"] )	? $_POST["id_user"] 	: '';
-	$Token 		= isset( $_POST["Token"] )		? $_POST["Token"] 	: '';
+	$id_user 	= isset( $_POST["id_user"] )	? ReplaceCharacter($_POST["id_user"]) 	: '';
+	$Token 		= isset( $_POST["Token"] )		? ReplaceCharacter($_POST["Token"]) 	: '';
 
 
 	if( $id_user != '' && $Token != ''){

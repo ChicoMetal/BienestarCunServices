@@ -11,12 +11,12 @@
 	require_once($PATH.'core/mesages.php');
 
 
-	$user 			= isset( $_POST["user"] )		? $_POST["user"] 		: '';
-	$token 			= isset( $_POST["token"] )		? $_POST["token"] 		: '';
-	$empresa 		= isset( $_POST["empresa"] )	? $_POST["empresa"] 	: '';
-	$cargo			= isset( $_POST["cargo"] )		? $_POST["cargo"] 		: '';
-	$dateStart 		= isset( $_POST["dateStart"] )	? $_POST["dateStart"] 	: '';
-	$dateEnd 		= isset( $_POST["dateEnd"] )	? $_POST["dateEnd"] 	: '';
+	$user 			= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 			: '';
+	$token 			= isset( $_POST["token"] )		? ReplaceCharacter($_POST["token"]) 		: '';
+	$empresa 		= isset( $_POST["empresa"] )	? ReplaceCharacter($_POST["empresa"]) 		: '';
+	$cargo			= isset( $_POST["cargo"] )		? ReplaceCharacter($_POST["cargo"]) 		: '';
+	$dateStart 		= isset( $_POST["dateStart"] )	? ReplaceCharacter($_POST["dateStart"]) 	: '';
+	$dateEnd 		= isset( $_POST["dateEnd"] )	? ReplaceCharacter($_POST["dateEnd"]) 		: '';
 
 
 

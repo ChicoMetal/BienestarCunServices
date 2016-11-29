@@ -5,14 +5,14 @@
 	}
 
 	require_once($PATH.'core/funtion.php');
-	require_once($PATH.'core/android/user/mesages_user.php');
+	require_once($PATH.'core/loginResource/mesages_user.php');
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
 
-	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
-	$token 	= isset( $_POST["token"] )		? $_POST["token"] 		: '';
+	$user 	= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 		: '';
+	$token 	= isset( $_POST["token"] )		? ReplaceCharacter($_POST["token"]) 		: '';
 
 	if( $user != '' && $token != '' ){
 

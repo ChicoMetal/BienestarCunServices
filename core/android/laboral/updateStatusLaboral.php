@@ -11,9 +11,9 @@
 	require_once($PATH.'core/mesages.php');
 
 
-	$user 			= isset( $_POST["user"] )		? $_POST["user"] 		: '';
-	$token 			= isset( $_POST["token"] )		? $_POST["token"] 		: '';
-	$status 		= isset( $_POST["status"] )		? $_POST["status"] 		: '';
+	$user 			= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 			: '';
+	$token 			= isset( $_POST["token"] )		? ReplaceCharacter($_POST["token"]) 		: '';
+	$status 		= isset( $_POST["status"] )		? ReplaceCharacter($_POST["status"]) 		: '';
 
 	if( $user != '' && $token != '' && $status != '' && ValidateToken( $token, $user ) ){
 

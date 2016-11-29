@@ -14,9 +14,9 @@
 	require_once($PATH.'core/mesages.php');
 	require_once($PATH.'core/constant.php');
 
-	$user 			= isset( $_POST["user"] )			? $_POST["user"] 			: '';
-	$token 			= isset( $_POST["token"] )			? $_POST["token"] 			: '';
-	$itinerario 	= isset( $_POST["idItinerario"] )	? $_POST["idItinerario"] 	: '';
+	$user 			= isset( $_POST["user"] )			? ReplaceCharacter($_POST["user"]) 			: '';
+	$token 			= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 		: '';
+	$itinerario 	= isset( $_POST["idItinerario"] )	? ReplaceCharacter($_POST["idItinerario"]) 	: '';
 
 	if( $user != '' && $token != '' && $itinerario != '' && ValidateToken( $token, $user ) ){
 

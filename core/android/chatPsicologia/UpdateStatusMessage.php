@@ -10,9 +10,9 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
-	$remitente 	= isset( $_POST["remitente"] )		? $_POST["remitente"] 		: '';
-	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
-	$receptor 	= isset( $_POST["receptor"] )		? $_POST["receptor"] 		: '';
+	$remitente 	= isset( $_POST["remitente"] )		? ReplaceCharacter($_POST["remitente"]) 	: '';
+	$token 		= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 		: '';
+	$receptor 	= isset( $_POST["receptor"] )		? ReplaceCharacter($_POST["receptor"]) 		: '';
 
 
 	if( $remitente != '' &&  $receptor != '' && $token != "" && ValidateToken( $token, $remitente ) ){	

@@ -13,6 +13,7 @@
 	//1111 = Super Administrador
 	//1110 = Administrador
 	//1101 = Administrador de circulo
+	//0101 = Coordinador de facultad
 	//1100 = Docente CUN
 	//1011 = Estudiante
 	//1010 = Estudiante egresado
@@ -23,6 +24,7 @@
 			"sadmin" 		=> "1111",
 			"admin" 		=> "1110",
 			"admincircle" 	=> "1101",
+			"coordinador"	=> "0101",
 			"docente" 		=> "1100",
 			"estudiante" 	=> "1011",
 			"egresado" 		=> "1010",

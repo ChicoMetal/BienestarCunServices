@@ -8,16 +8,17 @@
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
-	require_once($PATH.'core/android/user/mesages_user.php');
+	require_once($PATH.'core/loginResource/mesages_user.php');
 
 
-	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
+	$user 	= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 		: '';
 
 	if( $user != '' ){
 
 		$sql = "SELECT Nombres, Apellidos FROM personas WHERE Identificacion = '$user'";
 
 		echo BuscarDatos( $sql );
+
 
 	}else{
 

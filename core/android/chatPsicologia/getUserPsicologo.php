@@ -11,8 +11,8 @@
 	require_once($PATH.'core/constant.php');
 	require_once($PATH.'core/mesages.php');
 
-	$usuario 	= isset( $_POST["usuario"] )		? $_POST["usuario"] 		: '';
-	$token 		= isset( $_POST["token"] )			? $_POST["token"] 			: '';
+	$usuario 	= isset( $_POST["usuario"] )		? ReplaceCharacter($_POST["usuario"]) 		: '';
+	$token 		= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 		: '';
 
 	if( $usuario != '' && $token != "" && ValidateToken( $token, $usuario ) ){
 	

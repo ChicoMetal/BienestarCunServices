@@ -10,9 +10,9 @@
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
 
-	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: '';
-	$token 	= isset( $_POST["token"] )		? $_POST["token"] 		: '';
-	$circle	= isset( $_POST["circle"] )		? $_POST["circle"] 		: '';
+	$user 	= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 			: '';
+	$token 	= isset( $_POST["token"] )		? ReplaceCharacter($_POST["token"]) 		: '';
+	$circle	= isset( $_POST["circle"] )		? ReplaceCharacter($_POST["circle"]) 		: '';
 
 	if( $user != '' && $token != '' && $circle != '' && ValidateToken( $token, $user ) ){
 

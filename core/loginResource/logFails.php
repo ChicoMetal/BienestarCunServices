@@ -9,7 +9,7 @@
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
-	require_once($PATH.'core/android/user/mesages_user.php');
+	require_once($PATH.'core/loginResource/mesages_user.php');
 
 	
 	function SaveLogFails( $lvl, $user, $pass, $idUser = '' ){ //guarda un intento fallido de loguearse

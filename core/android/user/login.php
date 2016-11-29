@@ -9,11 +9,11 @@
 	require_once($PATH.'core/target_peticion.php'); 
 	require_once($PATH.'core/conexion.php');
 	require_once($PATH.'core/mesages.php');
-	require_once($PATH.'core/android/user/mesages_user.php');
+	require_once($PATH.'core/loginResource/mesages_user.php');
 
 
-	$user 	= isset( $_POST["user"] )		? $_POST["user"] 		: 'sadmin';
-	$pass 	= isset( $_POST["password"] )	? $_POST["password"] 	: '123';
+	$user 	= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 		: '';
+	$pass 	= isset( $_POST["password"] )	? ReplaceCharacter($_POST["password"]) 	: '';
 
 	if( $user != '' && $pass != ''){
 
@@ -24,16 +24,18 @@
 
 		$response = json_decode( $result );
 
-		$response = $response->result;		
+		$response = $response->result;	
 
-		$index = 2;
-		$key = $response[1]->$index;
+		if( is_object( $response[1] ) ){
+			$index = 2;
+			$key = $response[1]->$index;	
+		}
 
 		if ( $response[0] == "msm"  ){//Verifico si la respuesta es un objeto
 			
 			if( $result == $GLOBALS['resA3'] ){ //Pregunto si no se encontro registros
 
-				include_once( $PATH.'core/android/user/logFails.php');
+				include_once( $PATH.'core/loginResource/logFails.php');
 
 				SaveLogFails(false, $user, $pass );//guardo el intento fallido de login
 
@@ -63,7 +65,7 @@
 
 		}else{
 
-			include_once( $PATH.'core/android/user/logFails.php');
+			include_once( $PATH.'core/loginResource/logFails.php');
 
 			$index = 0;
 			$key = $response[1]->$index;

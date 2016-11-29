@@ -11,17 +11,17 @@
 	require_once($PATH.'core/mesages.php');
 
 
-	$user 			= isset( $_POST["user"] )			? $_POST["user"] 			: '';
-	$token 			= isset( $_POST["token"] )			? $_POST["token"] 			: '';
-	$nameActiviti 	= isset( $_POST["nameActiviti"] )	? $_POST["nameActiviti"] 	: '';
-	$detailActivitie= isset( $_POST["detailActivitie"] )? $_POST["detailActivitie"] : '';
-	$date 			= isset( $_POST["date"] )			? $_POST["date"] 			: '';
-	$hour 			= isset( $_POST["hour"] )			? $_POST["hour"] 			: '';
+	$user 			= isset( $_POST["user"] )			? ReplaceCharacter($_POST["user"]) 				: '';
+	$token 			= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 			: '';
+	$nameActiviti 	= isset( $_POST["nameActiviti"] )	? ReplaceCharacter($_POST["nameActiviti"]) 		: '';
+	$detailActivitie= isset( $_POST["detailActivitie"] )? ReplaceCharacter($_POST["detailActivitie"])	: '';
+	$date 			= isset( $_POST["date"] )			? ReplaceCharacter($_POST["date"]) 				: '';
+	$hour 			= isset( $_POST["hour"] )			? ReplaceCharacter($_POST["hour"]) 				: '';
 
-	if( $user != '' && $token != '' && $nameActiviti != ''&& $detailActivitie != ''&& $date != ''&& $hour != '' 
+	if( $user != '' && $token != '' && $nameActiviti != '' && $detailActivitie != '' && $date != '' && $hour != '' 
 		&& ValidateToken( $token, $user ) ){
 
-		$sql = "SELECT id, Admin FROM circulos WHERE Admin = $user LIMIT 1";
+		$sql = "SELECT id, Admin FROM circulos WHERE Admin = '$user' LIMIT 1";
 
 		$result = json_decode( BuscarDatos( $sql ) ); //obtengo el circulo al cual esta administrando el docente enviado
 
