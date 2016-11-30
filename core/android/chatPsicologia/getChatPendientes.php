@@ -21,11 +21,12 @@
 		//TODO dependiendo del tipo de usuario buscar las notificaciones
 		$sql = "SELECT cp.Remitente, cp.Destinatario
 				FROM chatpsicologia cp, usuarios u
-				WHERE cp.Estado = FALSE 
+				WHERE ( cp.Estado = FALSE OR cp.Leido >= DATE_SUB(NOW(), INTERVAL 1 HOUR) ) 
 				AND cp.Destinatario IN ( SELECT u.id FROM usuarios WHERE u.tipo = '{$GLOBALS['tipeUser']['psicologia'] }' ) 
-				GROUP BY cp.Remitente";//busco circulos que el usuario no tenga inscritos
+				GROUP BY cp.Remitente
+				ORDER BY MIN(cp.Estado)";//busco usuarios que enviaron mensajes al psicologo y no esten leidos o que no tengan mas de una hora de haberse leido
 
-		
+		//Adaptar para buscar tambien conversaciones con menos de 1 hora
 		echo BuscarDatos( $sql );
 
 	}else{

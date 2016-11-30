@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `chatpsicologia` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Mensaje` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Leido` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Estado` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'leido, no leido',
   `Remitente` bigint(15) NOT NULL,
   `Destinatario` bigint(15) DEFAULT NULL,
@@ -68,46 +69,10 @@ CREATE TABLE IF NOT EXISTS `chatpsicologia` (
   KEY `FK_chatpsicologia_usuarios_2` (`Destinatario`),
   CONSTRAINT `FK_chatpsicologia_usuarios` FOREIGN KEY (`Remitente`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `FK_chatpsicologia_usuarios_2` FOREIGN KEY (`Destinatario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran los mensajes dirijidos a la psicologa';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran los mensajes dirijidos a la psicologa';
 
--- Volcando datos para la tabla bienestarcun.chatpsicologia: ~18 rows (aproximadamente)
+-- Volcando datos para la tabla bienestarcun.chatpsicologia: ~35 rows (aproximadamente)
 /*!40000 ALTER TABLE `chatpsicologia` DISABLE KEYS */;
-INSERT INTO `chatpsicologia` (`Id`, `Mensaje`, `Fecha`, `Estado`, `Remitente`, `Destinatario`) VALUES
-	(1, 'hola', '2016-10-07 00:12:48', 1, 1104379, 7),
-	(2, 'hola', '2016-10-07 00:13:06', 1, 7, 1104379),
-	(3, 'como esta', '2016-10-07 00:13:15', 1, 1104379, 7),
-	(4, 'bn y tu', '2016-10-07 00:13:21', 1, 7, 1104379),
-	(5, 'bn bn', '2016-10-07 00:13:40', 1, 1104379, 7),
-	(6, 'q bueno :)', '2016-10-07 00:13:48', 1, 7, 1104379),
-	(7, 'hola', '2016-10-21 17:13:47', 1, 1104379, 7),
-	(8, 'hola', '2016-10-21 17:14:25', 1, 7, 1104379),
-	(9, 'hola', '2016-10-21 17:34:31', 1, 1104379, 7),
-	(10, 'holap', '2016-10-21 17:34:41', 1, 7, 1104379),
-	(11, 'hola', '2016-10-25 20:35:03', 1, 1104379, 7),
-	(12, 'hola', '2016-10-25 20:36:10', 1, 7, 1104379),
-	(13, 'como estas', '2016-10-25 20:36:38', 1, 7, 1104379),
-	(14, 'hola', '2016-10-25 20:40:37', 1, 1104379, 7),
-	(15, 'hola', '2016-10-25 20:45:40', 1, 7, 1104379),
-	(16, 'hola', '2016-10-25 20:49:52', 1, 1104379, 7),
-	(17, 'hola', '2016-10-25 20:50:01', 1, 7, 1104379),
-	(18, 'como esta', '2016-10-25 20:50:06', 1, 1104379, 7),
-	(19, 'bn y tu', '2016-10-25 20:50:14', 1, 7, 1104379),
-	(20, 'hola', '2016-11-23 12:51:20', 1, 1104379, 7),
-	(21, 'Hola ', '2016-11-28 21:05:22', 1, 1104379, 7),
-	(22, 'Hla', '2016-11-28 21:05:47', 1, 7, 1104379),
-	(23, 'Q más ', '2016-11-28 21:05:52', 1, 1104379, 7),
-	(24, 'Bn y tu', '2016-11-28 21:05:58', 1, 7, 1104379),
-	(25, 'Bien ', '2016-11-28 21:06:05', 1, 1104379, 7),
-	(26, 'Hi ', '2016-11-28 21:08:31', 1, 1104379, 7),
-	(27, 'Si? ', '2016-11-28 21:08:55', 1, 1104379, 7),
-	(28, 'No', '2016-11-28 21:09:08', 1, 7, 1104379),
-	(29, 'What ', '2016-11-28 21:10:29', 0, 1104379, 7),
-	(30, 'Jummmm', '2016-11-28 21:10:43', 1, 7, 1104379),
-	(31, 'Ji', '2016-11-28 21:24:55', 0, 1234567891, 7),
-	(32, 'Hi', '2016-11-28 22:56:17', 1, 1234567891, 7),
-	(33, 'aja', '2016-11-29 00:19:48', 0, 7, 1104379),
-	(34, 'hola', '2016-11-29 00:20:52', 0, 7, 1234567891),
-	(35, 'funciona :)', '2016-11-29 00:23:19', 0, 7, 1234567891);
 /*!40000 ALTER TABLE `chatpsicologia` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.circulos
@@ -129,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `circulos` (
 -- Volcando datos para la tabla bienestarcun.circulos: ~15 rows (aproximadamente)
 /*!40000 ALTER TABLE `circulos` DISABLE KEYS */;
 INSERT INTO `circulos` (`id`, `Nombre`, `Descripcion`, `Estado`, `Admin`, `Sede`) VALUES
-	(1, 'Musica', 'Actividad de canto, guitarra, bajo', 1, 1104379, 1),
+	(1, 'Musíca', 'Actividad de canto, guitarra, bajo', 1, 1104379, 1),
 	(2, 'Danza', 'Aprendizaje de bailes folcloricos, modernos, cumbia etc', 1, 3, 1),
 	(3, 'Football', 'Deporte de juego de equipo en micro', 1, 41, 1),
 	(4, 'Publico', 'Las notificaciones de este circulo estaran abiertas a todos los que tengan la app instalada', 1, NULL, 1),
@@ -214,24 +179,10 @@ CREATE TABLE IF NOT EXISTS `depuracion` (
   `Contenido` text COLLATE utf8_spanish2_ci NOT NULL,
   `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=350 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=484 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla bienestarcun.depuracion: ~98 rows (aproximadamente)
+-- Volcando datos para la tabla bienestarcun.depuracion: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `depuracion` DISABLE KEYS */;
-INSERT INTO `depuracion` (`Id`, `Contenido`, `Fecha`) VALUES
-	(337, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Remitente\\":\\"1104379\\",\\"Destinatario\\":\\"7\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:20:13'),
-	(338, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"psicologo\\",\\"Apellidos\\":\\"psicologo\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:21:16'),
-	(339, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"psicologo\\",\\"Apellidos\\":\\"psicologo\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:21:32'),
-	(340, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Remitente\\":\\"1104379\\",\\"Destinatario\\":\\"7\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:21:37'),
-	(341, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"psicologo\\",\\"Apellidos\\":\\"psicologo\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:21:52'),
-	(342, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"psicologo\\",\\"Apellidos\\":\\"psicologo\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:25:57'),
-	(343, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: MSM8974 #!#BOOTLOADER: s1 #!#BRAND: Sony #!#DEVICE: D5803 #!#DISPLAY: 23.5.A.1.291 #!#FINGERPRINT: Sony/D5803/D5803:6.0.1/23.5.A.1.291/2769308465:user/release-keys #!#HARDWARE: qcom #!#HOST: BuildHost #!#MODEL: D5803 #!#PRODUCT: D5803 #!#SERIAL: YT9111G5YE #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"psicologo\\",\\"Apellidos\\":\\"psicologo\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:34:45'),
-	(344, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: unknown #!#BOOTLOADER: unknown #!#BRAND: Android #!#DEVICE: generic_x86_64 #!#DISPLAY: sdk_google_phone_x86_64-userdebug 7.0 NYC 3287311 test-keys #!#FINGERPRINT: Android/sdk_google_phone_x86_64/generic_x86_64:7.0/NYC/3287311:userdebug/test-keys #!#HARDWARE: ranchu #!#HOST: vpeb14.mtv.corp.google.com #!#MODEL: Android SDK built for x86_64 #!#PRODUCT: sdk_google_phone_x86_64 #!#SERIAL: unknown #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"carlos\\",\\"Apellidos\\":\\"guzman\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:43:01'),
-	(345, 'Error desde android #!# Funcion: getResults #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.WebServices.ContentResults.ResponseContent.java #!#Dispositivo :( BOARD: unknown #!#BOOTLOADER: unknown #!#BRAND: Android #!#DEVICE: generic_x86_64 #!#DISPLAY: sdk_google_phone_x86_64-userdebug 7.0 NYC 3287311 test-keys #!#FINGERPRINT: Android/sdk_google_phone_x86_64/generic_x86_64:7.0/NYC/3287311:userdebug/test-keys #!#HARDWARE: ranchu #!#HOST: vpeb14.mtv.corp.google.com #!#MODEL: Android SDK built for x86_64 #!#PRODUCT: sdk_google_phone_x86_64 #!#SERIAL: unknown #!#) #!#Value {\\"values\\":[{\\"nameValuePairs\\":{\\"Nombres\\":\\"carlos\\",\\"Apellidos\\":\\"guzman\\"}}]} of type org.json.JSONObject cannot be converted to JSONArray', '2016-11-28 23:44:22'),
-	(346, 'Error desde android #!# Funcion: call #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.ui.frragmentContent.ChatPsicologa_app$5.java #!#Dispositivo :( BOARD: unknown #!#BOOTLOADER: unknown #!#BRAND: generic_x86 #!#DEVICE: generic_x86 #!#DISPLAY: sdk_x86-eng 4.1.1 JRO03H eng.zhangwei-linux-s.20150324.080526 test-keys #!#FINGERPRINT: unknown #!#HARDWARE: goldfish #!#HOST: zhangweilinuxs-All-Series #!#MODEL: Android SDK built for x86 #!#PRODUCT: sdk_x86 #!#SERIAL: unknown #!#) #!#null', '2016-11-29 00:20:53'),
-	(347, 'Error desde android #!# Funcion: call #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.ui.frragmentContent.ChatPsicologa_app$5.java #!#Dispositivo :( BOARD: unknown #!#BOOTLOADER: unknown #!#BRAND: generic_x86 #!#DEVICE: generic_x86 #!#DISPLAY: sdk_x86-eng 4.1.1 JRO03H eng.zhangwei-linux-s.20150324.080526 test-keys #!#FINGERPRINT: unknown #!#HARDWARE: goldfish #!#HOST: zhangweilinuxs-All-Series #!#MODEL: Android SDK built for x86 #!#PRODUCT: sdk_x86 #!#SERIAL: unknown #!#) #!#null', '2016-11-29 00:23:21'),
-	(348, 'Error desde android #!# Funcion: call #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.ui.frragmentContent.ChatPsicologa_app$5.java #!#Dispositivo :( BOARD: unknown #!#BOOTLOADER: unknown #!#BRAND: generic_x86 #!#DEVICE: generic_x86 #!#DISPLAY: sdk_x86-eng 4.1.1 JRO03H eng.zhangwei-linux-s.20150324.080526 test-keys #!#FINGERPRINT: unknown #!#HARDWARE: goldfish #!#HOST: zhangweilinuxs-All-Series #!#MODEL: Android SDK built for x86 #!#PRODUCT: sdk_x86 #!#SERIAL: unknown #!#) #!#null', '2016-11-29 00:23:21'),
-	(349, 'Error desde android #!# Funcion: ShowNotificationsNew #!#Clase : com.co.edu.cun.www1104379214.bienestarcun.Funciones.Notification.java #!#Dispositivo :( BOARD: unknown #!#BOOTLOADER: unknown #!#BRAND: generic_x86 #!#DEVICE: generic_x86 #!#DISPLAY: sdk_x86-eng 4.1.1 JRO03H eng.zhangwei-linux-s.20150324.080526 test-keys #!#FINGERPRINT: unknown #!#HARDWARE: goldfish #!#HOST: zhangweilinuxs-All-Series #!#MODEL: Android SDK built for x86 #!#PRODUCT: sdk_x86 #!#SERIAL: unknown #!#) #!#Value [{id=15, Fecha=2016-12-25 17:41:51, Notificacion=Presentacion presentacion grupo musica, Estado=111, Nombre=Publico}] at 0 of type java.util.ArrayList cannot be converted to JSONArray', '2016-11-29 00:46:59');
 /*!40000 ALTER TABLE `depuracion` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.desercion
@@ -278,14 +229,16 @@ CREATE TABLE IF NOT EXISTS `evidencias` (
   UNIQUE KEY `NombreArchivo` (`NombreArchivo`),
   KEY `FK_Evidencias_itinerarios` (`Itinerario`),
   CONSTRAINT `FK_Evidencias_itinerarios` FOREIGN KEY (`Itinerario`) REFERENCES `itinerarios` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran la informacion de los archivos subidos por los administradores de los circulos, ubicacion, nombre del archivo etc.';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran la informacion de los archivos subidos por los administradores de los circulos, ubicacion, nombre del archivo etc.';
 
--- Volcando datos para la tabla bienestarcun.evidencias: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bienestarcun.evidencias: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `evidencias` DISABLE KEYS */;
 INSERT INTO `evidencias` (`Id`, `Nombre`, `NombreArchivo`, `Ruta`, `Fecha`, `Itinerario`) VALUES
 	(1, 'imagenEvidencia', './evidencias/Evidencia#!#39#!#20161128_200611.jpg', '/evidencias', '2016-11-28 20:06:42', 39),
 	(2, 'imagenEvidencia', './evidencias/Evidencia#!#39#!#20161128_201044.jpg', '/evidencias', '2016-11-28 20:10:56', 39),
-	(3, 'imagenEvidencia', './evidencias/Evidencia#!#39#!#20161128_201151.jpg', '/evidencias', '2016-11-28 20:11:43', 39);
+	(3, 'imagenEvidencia', './evidencias/Evidencia#!#39#!#20161128_201151.jpg', '/evidencias', '2016-11-28 20:11:43', 39),
+	(4, 'imagenEvidencia', './evidencias/Evidencia#!#43#!#20161129_222516.jpg', '/evidencias', '2016-11-29 22:25:15', 43),
+	(5, 'imagenEvidencia', './evidencias/Evidencia#!#43#!#20161129_222646.jpg', '/evidencias', '2016-11-29 22:26:30', 43);
 /*!40000 ALTER TABLE `evidencias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.facultad
@@ -355,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `itinerarios` (
   PRIMARY KEY (`id`),
   KEY `FK_itinerarios_circulos` (`Circulo`),
   CONSTRAINT `FK_itinerarios_circulos` FOREIGN KEY (`Circulo`) REFERENCES `circulos` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran el itinerario de cada uno de los circulos, como las clases que se llevaran a cabo.';
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran el itinerario de cada uno de los circulos, como las clases que se llevaran a cabo.';
 
 -- Volcando datos para la tabla bienestarcun.itinerarios: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `itinerarios` DISABLE KEYS */;
@@ -372,7 +325,11 @@ INSERT INTO `itinerarios` (`id`, `Actividad`, `Detalle`, `Fecha`, `Ciclo`, `Esta
 	(36, 'Clase', 'Closeeeeeee', '2016-11-28 09:16:00', 0, '111', 2),
 	(37, 'Clase', 'Closeeeeeee2', '2016-11-28 09:16:00', 0, '111', 2),
 	(38, 'Clase', 'Clase', '2016-11-28 09:33:00', 0, '111', 1),
-	(39, 'Clase', 'Clase', '2016-11-28 21:05:00', 0, '111', 1);
+	(39, 'Clase', 'Clase', '2016-11-28 21:05:00', 0, '111', 1),
+	(40, 'clase de musica', 'clase de musica 2', '2016-11-29 20:27:00', 0, '111', 1),
+	(41, 'Reunion', 'Reunion', '2016-11-29 01:21:00', 0, '111', 1),
+	(42, 'Reunion', 'Reunion', '2016-11-29 01:21:00', 0, '111', 1),
+	(43, 'Ejemplo', 'Ejemplo', '2016-11-29 23:24:00', 0, '111', 1);
 /*!40000 ALTER TABLE `itinerarios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.laboralegresado
@@ -403,9 +360,9 @@ CREATE TABLE IF NOT EXISTS `logs` (
   UNIQUE KEY `Token` (`Token`),
   KEY `FK_Logs_usuarios` (`Usuario`),
   CONSTRAINT `FK_Logs_usuarios` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacena el historial de logs por los usuarios';
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacena el historial de logs por los usuarios';
 
--- Volcando datos para la tabla bienestarcun.logs: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bienestarcun.logs: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
 INSERT INTO `logs` (`Id`, `Fecha`, `Usuario`, `Token`, `Estado`) VALUES
 	(176, '2016-11-27 21:29:23', 1104379, 'c7cfd7494e1996ad2a150dffaec7a9aaa0a0ad05', 0),
@@ -415,7 +372,13 @@ INSERT INTO `logs` (`Id`, `Fecha`, `Usuario`, `Token`, `Estado`) VALUES
 	(180, '2016-11-28 21:03:50', 7, '54a8361db66dffa746a5f6ee7387804f630051db', 0),
 	(181, '2016-11-28 21:24:31', 1234567891, 'f81e8be3031c7db6068aad0433a3e67855794593', 1),
 	(182, '2016-11-28 21:25:44', 7, 'da6b4565362d089dd5b3b1463b2df1d4e5981f22', 1),
-	(183, '2016-11-29 00:00:09', 7, '2365aed17d15f8965e9b9d6eaeb03fb0712857ca', 1);
+	(183, '2016-11-29 00:00:09', 7, '2365aed17d15f8965e9b9d6eaeb03fb0712857ca', 1),
+	(184, '2016-11-29 12:25:35', 5, '89b89c839bc21ddcc34147441f09a2c160e2662e', 0),
+	(185, '2016-11-29 16:18:47', 5, '7abf213d665e17f018bf664cf4fdbaf3d9eaf5fb', 0),
+	(186, '2016-11-29 16:23:20', 1104379, 'a44218771228385072333ddb70281c01c19759b6', 1),
+	(187, '2016-11-29 19:54:49', 2, '20f95af6806570cd95260d4253ea061a83caa66c', 0),
+	(188, '2016-11-29 22:01:37', 1104379, '4b966d8df83170b653beee60fda630e6f082622b', 1),
+	(189, '2016-11-29 22:20:02', 7, '7ddf01f7ace8624344c6ba6b73cc3518f3669836', 1);
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.logsfails
@@ -543,7 +506,7 @@ CREATE TABLE IF NOT EXISTS `notificaciones` (
   PRIMARY KEY (`id`),
   KEY `FK_notificaciones_circulos` (`Circulo`),
   CONSTRAINT `FK_notificaciones_circulos` FOREIGN KEY (`Circulo`) REFERENCES `circulos` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Mensajes creados por el o los administradores del circulo, para los usuarios inscritos al circulo';
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Mensajes creados por el o los administradores del circulo, para los usuarios inscritos al circulo';
 
 -- Volcando datos para la tabla bienestarcun.notificaciones: ~37 rows (aproximadamente)
 /*!40000 ALTER TABLE `notificaciones` DISABLE KEYS */;
@@ -585,7 +548,11 @@ INSERT INTO `notificaciones` (`id`, `Notificacion`, `Fecha`, `Estado`, `Circulo`
 	(35, 'Clase Closeeeeeee', '2016-11-28 09:16:00', '111', 2),
 	(36, 'Clase Closeeeeeee2', '2016-11-28 09:16:00', '111', 2),
 	(37, 'Clase Clase', '2016-11-28 09:33:00', '111', 1),
-	(38, 'Clase Clase', '2016-11-28 21:05:00', '111', 1);
+	(38, 'Clase Clase', '2016-11-28 21:05:00', '111', 1),
+	(39, 'clase de musica clase de musica 2', '2016-11-29 20:27:00', '111', 1),
+	(40, 'Reunion Reunion', '2016-11-29 01:21:00', '111', 1),
+	(41, 'Reunion Reunion', '2016-11-29 01:21:00', '111', 1),
+	(42, 'Ejemplo Ejemplo', '2016-11-29 23:24:00', '111', 1);
 /*!40000 ALTER TABLE `notificaciones` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.personas
@@ -656,9 +623,9 @@ CREATE TABLE IF NOT EXISTS `usuariocirculo` (
   KEY `FK_usuariocirculo_circulos` (`Circulo`),
   CONSTRAINT `FK_UsuarioCirculo_usuarios` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `FK_usuariocirculo_circulos` FOREIGN KEY (`Circulo`) REFERENCES `circulos` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran las relaciones entre los usuario y los circulos a los que pertenecen';
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='Aqui se almacenaran las relaciones entre los usuario y los circulos a los que pertenecen';
 
--- Volcando datos para la tabla bienestarcun.usuariocirculo: ~21 rows (aproximadamente)
+-- Volcando datos para la tabla bienestarcun.usuariocirculo: ~23 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuariocirculo` DISABLE KEYS */;
 INSERT INTO `usuariocirculo` (`id`, `Usuario`, `Circulo`) VALUES
 	(4, 8, 1),
@@ -683,7 +650,9 @@ INSERT INTO `usuariocirculo` (`id`, `Usuario`, `Circulo`) VALUES
 	(44, 6, 6),
 	(50, 1104379, 1),
 	(51, 1234567891, 7),
-	(52, 1234567891, 4);
+	(52, 1234567891, 4),
+	(53, 5, 1),
+	(54, 1104379, 3);
 /*!40000 ALTER TABLE `usuariocirculo` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bienestarcun.usuarios

@@ -23,7 +23,7 @@
 				WHERE cp.Remitente = '$receptor' AND cp.Destinatario ='$remitente' OR 
 					  cp.Remitente = '$remitente' AND cp.Destinatario ='$receptor'
 				ORDER BY cp.Fecha
-				LIMIT 100";//busco mensajes enviados sin leer
+				LIMIT 100";//busco mensajes enviados
 
 		
 		echo BuscarDatos( $sql );
