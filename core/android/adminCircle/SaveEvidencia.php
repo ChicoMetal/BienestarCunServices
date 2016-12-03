@@ -20,6 +20,10 @@
 	$token 			= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 		: '';
 
 
+	$file = fopen("archivo.txt", "w");
+	fwrite($file, $token . PHP_EOL);
+	fclose($file);
+
 	if( ValidateToken( $token, $user ) ){
 
 		$file_name = $_FILES['picture']['name'];
@@ -48,7 +52,7 @@
 			$sql = "INSERT INTO evidencias(Nombre, NombreArchivo, Ruta, Itinerario)
 					VALUES('imagenEvidencia', '$evidencia', '/evidencias', '$itinerario')";
 
-			$result = InsertarDatos( $sql, true, $user );
+			$result = InsertarDatos( $sql, true, $GLOBALS['user'] );
 
 			return $result;
 

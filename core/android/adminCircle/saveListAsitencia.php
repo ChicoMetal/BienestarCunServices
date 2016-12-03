@@ -12,7 +12,7 @@
 
 	$user 			= isset( $_POST["user"] )			? ReplaceCharacter($_POST["user"]) 			: '';
 	$token 			= isset( $_POST["token"] )			? ReplaceCharacter($_POST["token"]) 		: '';
-	$json 			= isset( $_POST["listObject"] )		? ReplaceCharacter($_POST["listObject"]) 	: '';
+	$json 			= isset( $_POST["listObject"] )		? $_POST["listObject"] 						: '';
 
 	if( $user != '' && $token != '' && $json != '' && ValidateToken( $token, $user ) ){
 
