@@ -28,7 +28,7 @@
 
 			$sql = "UPDATE laboralegresado SET Laborando = '$status' WHERE Id = '$user' ";
 
-			echo InsertarDatos( $sql );
+			echo InsertarDatos( $sql, true, $user );
 
 			if( $status == false ){//si el estado es no laborando, actualizo las fechas finales que esten null
 
@@ -41,7 +41,7 @@
 
 			$sql = "INSERT INTO laboralegresado(Id, Laborando) VALUES('$user', '$status')";
 
-			echo InsertarDatos( $sql );
+			echo InsertarDatos( $sql, true, $user );
 
 		}
 

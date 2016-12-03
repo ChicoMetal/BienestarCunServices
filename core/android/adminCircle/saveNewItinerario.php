@@ -44,7 +44,7 @@
 			$sql = "INSERT INTO itinerarios(Actividad, Detalle, Fecha, Circulo)
 				VALUES('$nameActiviti', '$detailActivitie', '$datefinal', '$circulo')";
 
-			echo InsertarDatos($sql);
+			echo InsertarDatos($sql, true, $user);
 
 		}
 

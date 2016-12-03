@@ -61,7 +61,7 @@
 
 			$sql = "INSERT INTO asistencias(Presencia, Usuario, Itinerario) ".$sqlInsert;
 			
-			echo InsertarDatos( $sql );
+			echo InsertarDatos( $sql, true, $user );
 
 		}else{
 			echo  $GLOBALS['resB2'];

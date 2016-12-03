@@ -8,6 +8,7 @@
 	require_once($PATH.'core/target_peticion.php'); //################ habilitar
 	require_once($PATH."core/mesages.php");
 
+	$expresion = "/ |[[:space:]]|,|\(|\)|\n|\t/";//expresion regular para separar sql
 
 	function BuscarDatos( $sql ){
 
@@ -59,7 +60,8 @@
 		}					
 	}
 
-	function InsertarDatos( $sql ){
+	function InsertarDatos( $sql, $auditar=true, $user=null ){
+
 
 		$conexion = ConexionMysql();
 
@@ -69,8 +71,23 @@
 
 		}
 
-		return mysqli_query( $conexion, $sql ) ? $GLOBALS[ 'resA4' ]: 
-												 $GLOBALS[ 'resA2' ]; //Insertar datos
+		$old = null;
+
+		if( $user != null ){
+			$old = getOld( $sql );//obtener datos actuales en caso de modificaciones 
+		}
+
+		if ( mysqli_query( $conexion, $sql ) ){
+			
+			if( $auditar ){//saber si la funcion auditar es la que estar realizando la insercion
+				Auditoria( $sql, $user, $old );			
+			}
+
+			return $GLOBALS[ 'resA4' ];
+		}else{
+			return $GLOBALS[ 'resA2' ];
+		}
+
 	}
 
 	function ConexionMysql(){
@@ -113,19 +130,19 @@
 
 	function DatosConexion(){
 
-		$datosConexion = '{
+		/*$datosConexion = '{
 			"bd_host" 		: "www.db4free.net", 
 			"bd_usuario" 	:  "krlos1991", 
 			"bd_password" 	:  "19915991",
 			"bd_base" 		:  "bienestarcun"
-		}';
+		}';*/
 
-		/*$datosConexion = '{
+		$datosConexion = '{
 			"bd_host" 		: "localhost", 
 			"bd_usuario" 	:  "root", 
 			"bd_password" 	:  "",
 			"bd_base" 		:  "bienestarcun"
-		}';*/
+		}';
 
 		/*$datosConexion = '{
 			"bd_host" 		: "localhost", 
@@ -139,5 +156,98 @@
 		return $datosConexion;
 	}
 
+	function Auditoria( $sql, $user, $old ){
+		//genera informe para guardar los movimientos
+
+		$fragment = preg_split($GLOBALS['expresion'],$sql, -1, PREG_SPLIT_NO_EMPTY); 
+
+		$table = getTable( $fragment );
+
+		$sql = addslashes( $sql );
+
+		if( $table != null && $table != "" ){
+
+			if( $user != null && $old != null){
+
+				$sql = "INSERT INTO auditoria(Tabla, Accion, Old, User) 
+						VALUES('$table', '$sql', '$old', '$user')";
+			}elseif( $user != null ){
+
+				$sql = "INSERT INTO auditoria(Tabla, Accion, User) 
+						VALUES('$table', '$sql', '$user')";
+
+			}else{
+				$sql = "INSERT INTO auditoria(Tabla, Accion, Old) 
+						VALUES('$table', '$sql', '$old')";
+			}
+
+			InsertarDatos( $sql, false );
+
+		}else{
+			echo "hola";
+		}
+	}
+
+	function getTable( $fragments ){
+	//obtener el nombre de la tabla
+
+		for( $c = 0; $c < count( $fragments ); $c++){
+			if( $fragments[ $c ] == "FROM" 
+				|| $fragments[ $c ] == "INTO" 
+				|| $fragments[ $c ] == "UPDATE" ){
+				
+				return $fragments[ $c+1 ];
+			}
+		}
+
+		return null;
+	} 
+
+	function getOld( $sql ){
+	//obtener informacion vieja 
+
+		$fragment = preg_split($GLOBALS['expresion'], $sql, -1, PREG_SPLIT_NO_EMPTY); 
+
+		$table = getTable( $fragment );
+
+		if( $fragment[0] != "INSERT" ){
+
+			for( $c = 0; $c < count( $fragment ); $c++ ){
+
+				if( $fragment[ $c ] != "WHERE" ){
+
+					unset( $fragment[ $c ] );
+
+				}else{
+
+					$condition = implode(" ", $fragment );
+
+					$sql = "SELECT * FROM ".$table." ".$condition;
+
+					$response = BuscarDatos( $sql );
+
+					if ( $response[0] == "msm"  ){//Verifico si la respuesta es un objeto
+						return null;
+					}else{
+
+						$response = json_decode( $response );
+
+						$response = $response->result;
+
+						$response = $response[0][0];
+
+						return json_encode( $response );
+					}
+
+					break;
+				}
+
+				return null;
+			}
+		}
+
+
+		return null;
+	}
 
 ?>

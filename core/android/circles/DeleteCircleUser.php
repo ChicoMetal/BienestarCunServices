@@ -18,7 +18,7 @@
 
 		$sql = "DELETE FROM usuariocirculo WHERE Usuario = $user AND Circulo = $circle LIMIT 1";
 
-		echo InsertarDatos( $sql );
+		echo InsertarDatos( $sql, true, $user );
 
 	}else{
 

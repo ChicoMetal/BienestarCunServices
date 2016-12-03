@@ -36,7 +36,7 @@
 
 			$sql = "INSERT INTO laboralegresado(Id) VALUES('$user')";
 
-			$result =  InsertarDatos( $sql );			
+			$result =  InsertarDatos( $sql, true, $user );			
 
 			if( $result == $GLOBALS['resA4'] ){//verifico la creacion de la relacion
 
@@ -94,7 +94,7 @@
 
 		}
 
-		$result =  InsertarDatos( $sql );//guardo el historial enviado
+		$result =  InsertarDatos( $sql, true, $user );//guardo el historial enviado
 
 		return $result;
 	}

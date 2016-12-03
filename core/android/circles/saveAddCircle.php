@@ -19,7 +19,7 @@
 
 		$sql = "INSERT INTO usuariocirculo(Usuario, Circulo) VALUES( $user, $circle)";
 
-		echo InsertarDatos( $sql );
+		echo InsertarDatos( $sql, true, $user );
 
 	}else{
 

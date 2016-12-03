@@ -24,7 +24,7 @@
 				SET Estado = '{$GLOBALS['statusItinerario']["cancelado"]}' 
 				WHERE id = '$itinerario' ";
 
-		echo InsertarDatos( $sql );
+		echo InsertarDatos( $sql, true, $user );
 
 	}else{
 

@@ -12,7 +12,7 @@
 
 
 	$user 	= isset( $_POST["user"] )		? ReplaceCharacter($_POST["user"]) 		: '';
-	$token 	= isset( $_POST["token"] )		? ReplaceCharacter($_POST["token"]) 		: '';
+	$token 	= isset( $_POST["token"] )		? ReplaceCharacter($_POST["token"]) 	: '';
 
 	if( $user != '' && $token != '' ){
 

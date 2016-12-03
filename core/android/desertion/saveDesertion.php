@@ -37,7 +37,8 @@
 			$sql = "INSERT INTO desercion(Descripcion, Jornada, Facultad, Desertor, Usuario) 
 					VALUES( '$descripcion', '$horario', $facultad, $desertor,  $user )";
 
-			echo InsertarDatos( $sql );
+			echo InsertarDatos( $sql, true, $user );
+
 
 		}else{
 

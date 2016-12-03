@@ -48,7 +48,7 @@
 			$sql = "INSERT INTO evidencias(Nombre, NombreArchivo, Ruta, Itinerario)
 					VALUES('imagenEvidencia', '$evidencia', '/evidencias', '$itinerario')";
 
-			$result = InsertarDatos( $sql );
+			$result = InsertarDatos( $sql, true, $user );
 
 			return $result;
 
