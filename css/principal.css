@@ -1,0 +1,60 @@
+@import url('./font/fuentes.css');
+
+body{
+	background-size: 40%;
+	background: url('./img/fondo.png') fixed;
+	color: rgb(60,60,60);
+	font-family: open_sans, sans-serif;
+	font-size: 18px;
+
+}
+
+.body{
+	background-color: rgba(250,250,250,0.7);
+}
+.content-error{
+	font-size: 0.8em;
+	color: red;
+}
+
+.foot{
+	background: url('./img/foot.svg') fixed center 100%, rgba(0,119,052,0.9);
+	font-size: 0.8em;
+	margin: 0;
+}
+.foot h3{
+	font-family: open_sans_bold;
+	font-size: 1.5em;
+}
+.foot .contentSocial small{
+	margin: 0 5%;
+}
+.foot .contacto{
+	border-radius: 200px 0 0 0;
+	background-color: rgb(118,182,0);
+}
+.foot .contacto h3{
+	margin: 0;
+}
+
+.head{
+	background: url('./img/head.svg') fixed center 100%,rgba(118,182,0,0.9);
+	margin-top: 0;
+	padding-bottom: 0.3em;
+}
+
+.head h1, .head h2{
+	font-family: Petil Formal;
+	text-shadow: rgb(0,119,052) 5px 5px 20px;
+}
+.head, .body, .foot{
+	width: 100%;
+}
+
+.input-field input{
+	margin-bottom: 0.1em;
+}
+
+.indicador-req{
+	color: red;
+}

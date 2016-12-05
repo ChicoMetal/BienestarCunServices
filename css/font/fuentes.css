@@ -1,0 +1,103 @@
+@font-face {
+
+	font-family: Space Age;
+
+	src: url(./space_age/space_age.ttf);
+
+}
+
+@font-face {
+
+	font-family: Petil Formal;
+
+	src: url(./Petit_Formal_Script/PetitFormalScript-Regular.ttf);
+
+}
+
+
+/* 
+* open sans
+* *********************
+* *********************
+*/
+
+@font-face {
+
+	font-family: open_sans;
+
+	src: url(./open-sans/OpenSans-Regular.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_bold;
+
+	src: url(./open-sans/OpenSans-Bold.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_bold_italic;
+
+	src: url(./open-sans/OpenSans-BoldItalic.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_extra_bold;
+
+	src: url(./open-sans/OpenSans-ExtraBold.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_extra_bold_italic;
+
+	src: url(./open-sans/OpenSans-ExtraBoldItalic.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_italic;
+
+	src: url(./open-sans/OpenSans-Italic.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_ligh;
+
+	src: url(./open-sans/OpenSans-Ligh.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_ligh_italic;
+
+	src: url(./open-sans/OpenSans-LighItalic.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_semibold;
+
+	src: url(./open-sans/OpenSans-Semibold.ttf);
+
+}
+
+@font-face {
+
+	font-family: open_sans_semibold_italic;
+
+	src: url(./open-sans/OpenSans-SemiboldItalic.ttf);
+
+}
+

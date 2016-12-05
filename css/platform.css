@@ -1,0 +1,17 @@
+figure{
+	width: 40%;
+}
+figure img{
+	width: 100%;
+}
+h1{
+	font-weight: bold;
+	font-size: 3em;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+h2{
+	font-size: 2em;
+	margin-top: 0.2em;
+	width: 85%;
+}

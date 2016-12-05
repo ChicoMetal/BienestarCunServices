@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Inicio</title>
+	<link rel="icon" type="image/png" href="../css/img/icon.png" />
+
+
+	<link rel="stylesheet" href="../css/normalize.css"/>
+	<link rel="stylesheet" href="../components/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../components/materialize/css/materialize.min.css"/>
+	<link rel="stylesheet" href="../css/mbox-0.0.1.min.css"/>
+	<link rel="stylesheet" href="../css/principal.css"/>
+	<link rel="stylesheet" href="../css/login.css"/>
+
+	<script src="../js/jquery-3.1.1.min.js"></script>
+	<script src="../js/prefixfree.min.js"></script>	
+	<script src="../components/materialize/js/materialize.min.js"></script>	
+	<script src="../js/mbox-0.0.1.min.js"></script>
+	<script src="../js/validate/jquery.validate.min.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="../js/principal.js"></script>
+	<script src="../js/login.js"></script>
+	
+</head>
+<body>
+	 <div id="btn_out" class="fixed-action-btn">
+	<a class="btn-floating btn-large green">
+	  <i class="fa fa-sign-out" aria-hidden="true"></i>
+	</a>
+  </div>
+	<div class="section head col s12 m12 l12">		
+		<h1 class="center-align"> Eres Administrador?</h1>
+		<h2 class="right-align">Validemos unos datos.</h2>
+	</div>
+
+	<div class="section body row col s12 m12 l12">		
+		<figure class="valign-wrapper col l6 m12 s12">
+			<img class="valign center" src="../css/img/logo.svg" />
+		</figure>
+		<div id="contentLogin" class="col l6 m12 s12">
+			
+			<div id="login" >
+				<form id="loginForm">					
+					<div class="row">
+						<div class="input-field col l18 m8 s12 offset-l2">
+							<input  id="user" name="user" type="text" class="validate">
+							<label for="user">Nombres<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l18 m8 s12 offset-l2">
+							<input id="password" name="password" type="password" class="validate">
+							<label for="password">Contraseña<i class="indicador-req">*</i></label>
+						</div>
+					</div>
+					<div class="row">
+					<div id="contentBotton" class="col l6 m6 s12 offset-l3 offset-m3">		      	
+							<button class="btn waves-effect waves-light" type="submit" name="enviar">Enviar
+						</button>
+						<button class="btn waves-effect waves-light yellow darken-4" type="reset" name="reset">Limpiar
+						</button>
+					</div>
+					</div>	
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div class="foot row valign-wrapper col s12 m12 l12">
+		<div class="somos left-align col l4 s4 m12">
+			<h3>Quienes somos</h3>
+			<p>Somos una institución de Educación redefinida que busca cumplir y desarrollar los sueños de jóvenes colombianos.</p>
+		</div>
+		<div class="contentSocial valign center-align col l4 s4 m12">
+			<small><i class="fa fa-facebook fa-4x" aria-hidden="true"></i></small>			
+			<small><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></small>
+			<small><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></small>	
+			<br/><small>Copyright © 2016 Corporación Unificada Nacional de Educación Superior CUN - Colombia. Todos los derechos reservados. </small><br/>
+			<small>Per.Jur.Res. de 1983, IES sujeta a inspección y vigilancia por el MEN</small>
+		</div>
+		<div class="contacto right-align col l4 s4 m12">
+			<h3><i class="fa fa-phone fa-2x" aria-hidden="true"></i> Si tienes dudas</h3>
+			<p>Línea de atención en Bogotá 3078180</p>
+			<p>Línea Gratuita Nacional 018000115411</p>
+		</div>
+	</div>
+
+</body>
+</html>

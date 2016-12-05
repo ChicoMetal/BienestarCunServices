@@ -2,16 +2,166 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Inicio</title>
+	<link rel="icon" type="image/png" href="./css/img/icon.png" />
+
+
+	<link rel="stylesheet" href="./css/normalize.css"/>
+	<!-- <link rel="stylesheet" href="./components/bootstrap-3.3.7-dist/css/bootstrap.min.css"/> -->
+	<link rel="stylesheet" href="./components/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="./components/materialize/css/materialize.min.css"/>
+	<link rel="stylesheet" href="./css/mbox-0.0.1.min.css"/>
+	<link rel="stylesheet" href="./css/principal.css"/>
+	<link rel="stylesheet" href="./css/index.css"/>
+
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/prefixfree.min.js"></script>	
+	<script src="./components/materialize/js/materialize.min.js"></script>	
+	<!-- <script src="./components/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
+	<script src="./js/mbox-0.0.1.min.js"></script>
+	<script src="./js/validate/jquery.validate.min.js"></script>
+	<script src="./js/principal.js"></script>
+	<script src="./js/index.js"></script>
 
 
 	
 </head>
 <body>
-	
-	<h1 class="text-center"> Plataforma de administracion </h1>
+	 
+	 <div id="btn_admin" class="fixed-action-btn">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-user-o fa-4x" aria-hidden="true"></i>
+    </a>
+  </div>
 
-	
+	<div class="section head col s12 m12 l12">		
+		<h1 class="center-align"> Ya eres parte de nosotros?</h1>
+		<h2 class="right-align">Ven! usa nuestra app</h2>
+	</div>
+
+	<div class="section body row col s12 m12 l12">		
+		<figure class="valign-wrapper col l6 m12 s12">
+			<img class="valign center" src="./css/img/logo.svg" />
+		</figure>
+		<div id="contentForm" class="col l6 m12 s12">
+			<form id="formUser" class="col l12 s12 m12">
+				<div class="row">
+						 <div class="input-field col l5 m6 s12">
+						<select id="tip_identificacion" name="tip_identificacion" class="select validate" data-mensaje="Tipo de identificacion">
+							<option value="0" disabled selected>Seleccione una opcion</option>
+							<option value="CC">Cedula de ciudadania</option>
+							<option value="CO">Contraseña</option>
+							<option value="TI">Tarjeta de identidad</option>
+						</select>
+						<label>Tipo de identificacion<i class="indicador-req">*</i></label>
+					</div>
+						<div class="input-field col l7 m6 s12">
+							<input id="Identificacion" name="Identificacion" type="text" class="validate">
+							<label for="Identificacion">Identificacion<i class="indicador-req">*</i></label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col l6 m6 s12">
+							<input id="first_name" name="first_name" type="text" class="validate">
+							<label for="first_name">Nombres<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l6 m6 s12">
+							<input id="Apellidos" name="Apellidos" type="text" class="validate">
+							<label for="Apellidos">Apellidos<i class="indicador-req">*</i></label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col l6 m6 s12">
+							<input id="Contacto" name="Contacto" type="tel" class="validate">
+							<label for="Contacto">Numero de contacto<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l6 m6 s12">
+							<input id="Email" name="Email" type="email" class="validate">
+							<label for="Email">Correo electronico<i class="indicador-req">*</i></label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col l7 m6 s12">
+							<input id="Direccion" name="Direccion" type="text" class="validate">
+							<label for="Direccion">Direccion<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l5 m6 s12">
+						<select id="sexo" name="sexo" class="select validate" data-mensaje="Sexo">
+							<option value="0" disabled selected>Seleccione una opcion</option>
+							<option value="M">Masculino</option>
+							<option value="F">Femenino</option>
+						</select>
+						<label>Sexo<i class="indicador-req">*</i></label>
+					</div>
+					</div>
+					<div class="row">
+						<div class="input-field col l4 m6 s12">
+							<input id="Edad" name="Edad" type="text" class="validate">
+							<label for="Edad">Edad<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l8 m6 s12">
+						<select id="sedes" name="sedes" class="select sedes validate" data-mensaje="Sede">
+						</select>
+						<label>Sede<i class="indicador-req">*</i></label>
+					</div>
+					</div>
+					<div class="row">
+						<div class="input-field col l6 m6 s12">
+							<input id="User" name="User" type="text" class="validate">
+							<label for="User">Nombre de usuario<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l6 m6 s12">
+							<select id="tip_usuario" name="tip_usuario" class="select validate" data-mensaje="Tipo de usuario">
+								<option value="0" disabled selected>Seleccione una opcion</option>
+								<option value="1101">Docente actividad</option>
+								<option value="1100">Docente</option>
+								<option value="1011">Estudiante</option>
+								<option value="1010">Egresado</option>
+							</select>
+							<label>Tipo de usuario<i class="indicador-req">*</i></label>
+						</div>		        
+					</div>
+					<div class="row">
+						<div class="input-field col l6 m6 s12">
+							<input id="password" name="password" type="password" class="validate">
+							<label for="password">Contraseña<i class="indicador-req">*</i></label>
+						</div>
+						<div class="input-field col l6 m6 s12">
+							<input id="confirm_pas" name="confirm_pas" type="password" class="validate">
+							<label for="confirm_pas">Confirmar contraseña<i class="indicador-req">*</i></label>
+						</div>
+					</div>
+					<div class="row">
+						<div id="contentBotton" class="col l6 m6 s12 offset-l3 offset-m3">		      	
+							<button class="btn waves-effect waves-light" type="submit" name="enviar">Enviar
+						</button>
+						<button class="btn waves-effect waves-light yellow darken-4" type="reset" name="reset">Limpiar
+						</button>
+					</div>
+					</div>		     
+				</form>
+		</div>
+	</div>
+
+	<div class="foot row valign-wrapper col s12 m12 l12">
+		<div class="somos left-align col l4 s4 m12">
+			<h3>Quienes somos</h3>
+			<p>Somos una institución de Educación redefinida que busca cumplir y desarrollar los sueños de jóvenes colombianos.</p>
+		</div>
+		<div class="contentSocial valign center-align col l4 s4 m12">
+			<small><i class="fa fa-facebook fa-4x" aria-hidden="true"></i></small>			
+			<small><i class="fa fa-twitter fa-4x" aria-hidden="true"></i></small>
+			<small><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></small>	
+			<br/><small>Copyright © 2016 Corporación Unificada Nacional de Educación Superior CUN - Colombia. Todos los derechos reservados. </small><br/>
+			<small>Per.Jur.Res. de 1983, IES sujeta a inspección y vigilancia por el MEN</small>
+		</div>
+		<div class="contacto right-align col l4 s4 m12">
+			<h3><i class="fa fa-phone fa-2x" aria-hidden="true"></i> Si tienes dudas</h3>
+			<p>Línea de atención en Bogotá 3078180</p>
+			<p>Línea Gratuita Nacional 018000115411</p>
+		</div>
+	</div>
 
 </body>
 </html>
